@@ -49,6 +49,13 @@ $router->get('/logout', function () {
     exit;
 });
 
+// صفحة التفاصيل
+$router->get('/event-details', function () {
+    require APP_PATH . "/Controllers/EventsController.php";
+    $id = $_GET["id"] ?? null;
+    (new EventsController)->show($id);
+});
+
 
 return $router;
 

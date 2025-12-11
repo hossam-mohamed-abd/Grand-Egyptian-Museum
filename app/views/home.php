@@ -1,6 +1,7 @@
 <?php require_once APP_PATH . '/config/config.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -13,7 +14,7 @@
   <!-- bootstrap -->
   <link rel="stylesheet" href="<?= ASSETS ?>css/bootstrap.min.css" />
   <!-- css components -->
-   <link rel="stylesheet" href="<?= ASSETS ?>css/components/navbar.component.css">
+  <link rel="stylesheet" href="<?= ASSETS ?>css/components/navbar.component.css">
   <link rel="stylesheet" href="<?= ASSETS ?>css/components/header.component.css" />
   <link rel="stylesheet" href="<?= ASSETS ?>css/components/events-section.component.css" />
   <link rel="stylesheet" href="<?= ASSETS ?>css/components/Collections-section.component.css" />
@@ -42,59 +43,11 @@
     </header>
     <!-- end to header -->
 
-    <!-- events-section -->
-    <section id="events" class="events-section">
-      <div class="container">
-        <h2 class="events-title">Upcoming Events</h2>
-
-        <div class="events-grid">
-          <!-- Event Card 1 -->
-          <div class="event-card">
-            <img
-              src="https://imonkey-blog.imgix.net/blog/wp-content/uploads/2015/12/23052256/shutterstock_242036125.jpg"
-              alt="Tutankhamun Exhibition" />
-            <div class="event-info">
-              <h3>Golden Pharaohs Exhibition</h3>
-
-              <p>
-                Discover rare artifacts from the tombs of Egypt’s greatest
-                kings.
-              </p>
-              <span class="date">✦ 14 March 2025</span>
-              <a href="<?= BASE_URL ?>event-details"><button class="event-btn">Learn More</button></a>
-            </div>
-          </div>
-
-          <!-- Event Card 2 -->
-          <div class="event-card">
-            <img src="https://powertraveller.com/wp-content/uploads/2024/07/1_ancient-art-workshop-fresco..jpg"
-              alt="Workshop" />
-            <div class="event-info">
-              <h3>Ancient Art Workshop</h3>
-              <p>
-                Join our art experts to recreate legendary Pharaonic artworks.
-              </p>
-              <span class="date">✦ 22 April 2025</span>
-              <a href="<?= BASE_URL ?>event-details"><button class="event-btn">Learn More</button></a>
-            </div>
-          </div>
-
-          <!-- Event Card 3 -->
-          <div class="event-card">
-            <img src="<?= ASSETS ?>image/events.png" alt="Lecture" />
-            <div class="event-info">
-              <h3>The Secrets of the Pyramids</h3>
-              <p>
-                An exclusive lecture revealing untold stories of the pyramids.
-              </p>
-              <span class="date">✦ 30 May 2025</span>
-              <a href="<?= BASE_URL ?>event-details"><button class="event-btn">Learn More</button></a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  
+    <!-- event- -->
+    <?php
+    require APP_PATH . "/Controllers/EventsController.php";
+    (new EventsController)->index();
+    ?>
 
     <section class="collections-preview">
       <h2 class="col-title">Explore Our Collections</h2>
@@ -252,7 +205,8 @@
       </section>
     </section>
 
-    <section id="donate-section" class="donate-section" id="donate" style="background-image: url('<?= ASSETS ?>image/collage.png');">
+    <section id="donate-section" class="donate-section" id="donate"
+      style="background-image: url('<?= ASSETS ?>image/collage.png');">
       <div class="donate-overlay"></div>
 
       <div class="donate-content">
