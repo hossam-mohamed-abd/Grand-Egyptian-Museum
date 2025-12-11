@@ -1,0 +1,67 @@
+/* =============================
+   Donate Section – Dark Egyptian Style
+============================= */
+
+.donate-section {
+  position: relative;
+  padding: 120px 20px;
+  text-align: center;
+  color: white;
+  /* background: url("/GEM_mvc/public/assets/image/collage.png"); */
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+}
+
+/* Dark overlay */
+.donate-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(20, 15, 10, 0.75);
+  backdrop-filter: blur(2px);
+}
+
+/* Text content */
+.donate-content {
+  position: relative;
+  z-index: 2;
+  max-width: 700px;
+  margin: auto;
+}
+
+.donate-section h2 {
+  font-size: 2.8rem;
+  color: #f4e3c0; /* Egyptian Gold */
+  margin-bottom: 15px;
+}
+
+.donate-section p {
+  font-size: 1.2rem;
+  color: #e0d3c0;
+  margin-bottom: 25px;
+}
+
+/* Donate button */
+.donate-btn {
+  padding: 12px 35px;
+  background: #b58946;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.15rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.donate-btn:hover {
+  background: #8d6a32;
+  transform: scale(1.05);
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .donate-section h2 {
+    font-size: 2.2rem;
+  }
+}

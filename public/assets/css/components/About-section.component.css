@@ -1,0 +1,74 @@
+/* =============================
+   About Section – Split Layout
+============================= */
+
+.about-section {
+  padding: 90px 20px;
+  background: #f8f4ef; /* بيج خفيف راقي */
+}
+
+.about-container {
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+/* Image */
+.about-image {
+  flex: 1;
+}
+
+.about-image img {
+  width: 100%;
+  border-radius: 14px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.2);
+}
+
+/* Content */
+.about-content {
+  flex: 1;
+}
+
+.about-content h2 {
+  font-size: 2.5rem;
+  color: #3a2e2e;
+  margin-bottom: 15px;
+}
+
+.about-content p {
+  font-size: 1.1rem;
+  color: #5c4d44;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.about-btn {
+  padding: 12px 30px;
+  border: none;
+  background: #b58946; /* Gold */
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.about-btn:hover {
+  background: #8d6a32;
+  transform: scale(1.05);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .about-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .about-image img {
+    max-width: 90%;
+  }
+}

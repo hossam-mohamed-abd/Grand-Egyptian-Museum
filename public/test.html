@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI in different fields</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- CSS Styles --- */
+        * {
+            padding: 0;
+            margin: 0;
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #00023e;
+            display: flex;
+            background-image: url('AI photo.jpg'); /* Default Background */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
+            overflow-x: hidden;
+            transition: background-image 0.5s ease-in-out;
+        }
+
+        .img-container {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-bottom: 10px;
+            border: 3px solid thistle;
+            flex-shrink: 0;
+        }
+
+        .img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .menu {
+            background-color: #123;
+            width: 70px;
+            height: 100vh;
+            padding: 20px 10px;
+            overflow: hidden;
+            transition: .5s;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .menu:hover {
+            width: 260px;
+        }
+
+        ul {
+            list-style: none;
+            position: relative;
+            height: 100%;
+        }
+
+        ul li a {
+            display: block;
+            text-decoration: none;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            transition: .3s;
+            white-space: nowrap;
+            cursor: pointer;
+        }
+
+        ul li a:hover,
+        .active {
+            background-color: rgb(42, 122, 165);
+        }
+
+        .logout {
+            position: absolute;
+            bottom: 20px;
+            width: 100%;
+        }
+
+        .logout a {
+            background-color: #a00;
+        }
+
+        .logout a:hover {
+            background-color: #d00;
+        }
+
+        ul li a i {
+            font-size: 20px;
+            color: thistle;
+            width: 30px;
+            text-align: center;
+        }
+
+        .profile {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 30px;
+            opacity: 0;
+            transition: 0.3s;
+        }
+
+        .menu:hover .profile {
+            opacity: 1;
+            flex-direction: row;
+            gap: 15px;
+        }
+
+        .profile h2 {
+            font-size: 16px;
+            white-space: nowrap;
+        }
+
+        .main-content {
+            flex-grow: 1;
+            padding: 20px;
+            overflow-y: auto;
+            height: 100vh;
+        }
+
+        .main-content header h1 {
+            font-size: 50px;
+            margin: 30px;
+            font-family: fantasy;
+            text-shadow: 2px 2px 5px black;
+        }
+
+        /* Content Box Style */
+        .content-box {
+            padding: 30px;
+            background: rgba(0, 0, 0, 0.85);
+            border-radius: 15px;
+            margin-top: 20px;
+            max-width: 1000px;
+            animation: fadeIn 0.6s ease-in-out;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            color: white;
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+        
+        th, td {
+            padding: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: left;
+        }
+
+        th {
+            background-color: #2a7aa5;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="menu">
+        <ul>
+            <li class="profile">
+                <div class="img-container">
+                    <img src="woman-9187748_1280.jpg" alt="Profile Image">
+                </div>
+                <h2>Maria Atef Ghaly</h2>
+            </li>
+            <li>
+                <a class="active" id="link-overview" href="#" onclick="location.reload()">
+                    <i class="fas fa-home"></i>
+                    <p>Overview</p>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fa-solid fa-stethoscope"></i>
+                    <p>Medical</p>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fa-solid fa-car"></i>
+                    <p>Self-driven</p>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fa-solid fa-code"></i>
+                    <p>Programming</p>
+                </a>
+            </li>
+            <li>
+                <a href="#" id="link-education" onclick="showEducationContent()">
+                    <i class="fas fa-pen"></i>
+                    <p>Education</p>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fas fa-chart-pie"></i>
+                    <p>E-commerce</p>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fa-solid fa-check-double"></i>
+                    <p>Conclusion</p>
+                </a>
+            </li>
+            <li class="logout">
+                <a href="#">
+                    <i class="fas fa-sign-out"></i>
+                    <p>Log Out</p>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="main-content" id="content-area">
+        <header>
+            <h1>AI in Different Fields</h1>
+        </header>
+    </div>
+
+    <script>
+        function showEducationContent() {
+            // 1. Switch Active Class (The Highlight)
+            document.getElementById('link-overview').classList.remove('active');
+            document.getElementById('link-education').classList.add('active');
+
+            // 2. Change Background
+            document.body.style.backgroundImage = "url('https://www.innovationnewsnetwork.com/wp-content/uploads/2024/02/shutterstockPhonlamai-Photo_1058815598-1024x576.jpg')";
+            
+            // 3. Change Content
+            const contentArea = document.getElementById('content-area');
+            
+            contentArea.innerHTML = `
+                <div class="content-box">
+                    <h1 style="border-bottom: 2px solid #2a7aa5; padding-bottom: 10px; margin-bottom: 20px;">Artificial Intelligence in Education (AIEd)</h1>
+                    
+                    <h3 style="color: #4da6ff; margin-top: 25px;">1. Historical Context: When did it start?</h3>
+                    <p style="margin-top: 10px;">While concepts like "teaching machines" date back to the 1960s, modern AI integration began in the late 1990s.</p>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li style="margin-bottom: 5px;"><strong>Early Phase (1970s–1990s):</strong> Rule-based "Intelligent Tutoring Systems" with simple if-then logic.</li>
+                        <li style="margin-bottom: 5px;"><strong>Modern Phase (2010s–Present):</strong> Big Data and Deep Learning allowed for truly adaptive systems.</li>
+                        <li><strong>2022 Turning Point:</strong> The launch of generative AI (like ChatGPT) marked mass adoption.</li>
+                    </ul>
+
+                    <h3 style="color: #4da6ff; margin-top: 25px;">2. Current Status: Essential or Assistant?</h3>
+                    <p style="margin-top: 10px;">AI is currently classified as a <strong>Collaborative Assistant</strong>, not a replacement. It follows a "Human-in-the-Loop" model, handling repetitive tasks like grading so teachers can focus on mentorship.</p>
+
+                    <h3 style="color: #4da6ff; margin-top: 25px;">3. Key Applications & Tools</h3>
+                    <table>
+                        <tr>
+                            <th>Category</th>
+                            <th>Description</th>
+                            <th>Examples</th>
+                        </tr>
+                        <tr>
+                            <td>Intelligent Tutoring Systems (ITS)</td>
+                            <td>Adapts difficulty based on performance</td>
+                            <td>Duolingo, Khanmigo</td>
+                        </tr>
+                        <tr>
+                            <td>Administrative Automation</td>
+                            <td>Routine tasks like grading & scheduling</td>
+                            <td>Turnitin</td>
+                        </tr>
+                        <tr>
+                            <td>LMS</td>
+                            <td>Predicts student dropout rates</td>
+                            <td>Canvas, Blackboard</td>
+                        </tr>
+                    </table>
+
+                    <h3 style="color: #4da6ff; margin-top: 25px;">4. Statistics (2024–2025 Context)</h3>
+                    <ul style="list-style-type: square; margin-left: 20px; margin-top: 10px;">
+                        <li style="margin-bottom: 5px;"><strong>Market Growth:</strong> Projected to reach $53–112 Billion by 2030.</li>
+                        <li style="margin-bottom: 5px;"><strong>Adoption:</strong> ~60% of educators and 78% of students use AI tools.</li>
+                        <li><strong>Efficiency:</strong> Reduces administrative time by 30–50%.</li>
+                    </ul>
+
+                    <h3 style="color: #4da6ff; margin-top: 25px;">5. Challenges & Risks</h3>
+                    <p style="margin-top: 10px;">Key concerns include the "Hallucination" problem where AI gives incorrect facts, data privacy issues, and the potential erosion of critical thinking skills in students.</p>
+
+                    <h3 style="color: #4da6ff; margin-top: 25px;">6. Technical Perspective (CS Focus)</h3>
+                    <p style="margin-top: 10px;">From a Computer Science view, this relies on:</p>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li style="margin-bottom: 5px;"><strong>NLP (Natural Language Processing):</strong> Using Transformers (GPT-4, BERT).</li>
+                        <li style="margin-bottom: 5px;"><strong>Predictive Analytics:</strong> Using Regression Models to flag at-risk students.</li>
+                        <li><strong>Knowledge Graphs:</strong> To map connections between concepts (e.g., Algebra → Calculus).</li>
+                    </ul>
+                </div>
+            `;
+        }
+    </script>
+
+</body>
+</html>

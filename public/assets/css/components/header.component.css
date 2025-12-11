@@ -1,0 +1,64 @@
+header {
+  margin-top: 60px;
+  width: 100%;
+  min-height: 50vh;
+  padding-block: 20px;
+  padding-inline: 30px;
+  background-image: url("../../image/testheser2.jpg");
+  background-size: cover;
+  background-position: 60% 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 60px;
+  color: white;
+}
+
+/* Dark overlay to make text readable */
+header::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4); /* adjust between 0.3 - 0.55 */
+}
+
+header h1 {
+  position: relative;
+
+  max-width: 700px;
+  margin-bottom: 15px;
+  font-family: "Science Gothic", sans-serif;
+  font-optical-sizing: auto;
+}
+
+header p {
+  position: relative;
+  font-size: 1.3rem;
+  max-width: 600px;
+  margin-bottom: 30px;
+  opacity: 0.9;
+}
+
+header button {
+  position: relative;
+  padding: 12px 28px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(2px);
+  color: #ffffff;
+  font-size: 1.1rem;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+header button:hover {
+  background: rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.8);
+  transform: translateY(-2px);
+}

@@ -1,0 +1,454 @@
+/* =============================
+   Kids Zone – Image Gallery
+============================= */
+
+.kids-zone {
+  padding: 80px 20px;
+  background: #f9f3e8; /* بيج دافي شبيه بالبردي */
+}
+
+.kids-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.kids-header h2 {
+  font-size: 2.6rem;
+  color: #3a2e2e;
+  margin-bottom: 8px;
+}
+
+.kids-header p {
+  font-size: 1.1rem;
+  color: #6b5d5d;
+}
+
+/* صور الأطفال */
+.kids-gallery {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.kids-photo {
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.kids-photo img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  transition: 0.3s ease;
+}
+
+.kids-photo:hover img {
+  transform: scale(1.06);
+}
+
+/* زر تحت الصور */
+.kids-btn-wrapper {
+  text-align: center;
+  margin-top: 35px;
+}
+
+.kids-main-btn {
+  padding: 10px 28px;
+  border-radius: 8px;
+  border: none;
+  background: #b58946;
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.kids-main-btn:hover {
+  background: #8d6a32;
+  transform: scale(1.05);
+}
+
+/* موبايل */
+@media (max-width: 900px) {
+  .kids-gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .kids-gallery {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =============================
+   Memory Game - Preview Card
+============================= */
+
+.memory-preview-card {
+  /* margin: 40px auto 0; */
+  max-width: 320px;
+  background: #fff;
+  border-radius: 16px;
+  padding: 18px 16px;
+  text-align: center;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.15);
+  border: 2px solid #e5d3b3;
+  transition: 0.3s;
+}
+
+.memory-preview-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+}
+
+.memory-preview-top {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+
+.memory-preview-image {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+}
+
+/* Title */
+.memory-preview-card h3 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #3a2e2e;
+}
+
+/* Text */
+.memory-preview-card p {
+  font-size: 1rem;
+  color: #6b5d5d;
+  margin-bottom: 12px;
+}
+
+/* Button */
+.memory-preview-card button {
+  padding: 8px 22px;
+  border: none;
+  background: #b58946;
+  color: white;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.memory-preview-card button:hover {
+  background: #8d6a32;
+  transform: scale(1.05);
+}
+
+/* =============================
+   Memory Game - Overlay
+============================= */
+
+.memory-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  display: none; /* مخفية افتراضيًا */
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.memory-overlay.show {
+  display: flex;
+}
+
+.memory-container {
+  background: #1f1a17;
+  border-radius: 16px;
+  padding: 25px 20px 20px;
+  width: 90%;
+  max-width: 900px;
+  max-height: 90vh;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.6);
+  color: white;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Close button */
+.memory-close {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  border: none;
+  background: transparent;
+  color: #f4e3c0;
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+
+/* Titles */
+.memory-title {
+  text-align: center;
+  font-size: 1.8rem;
+  margin: 5px 0 5px;
+  color: #f4e3c0;
+}
+
+.memory-subtitle {
+  text-align: center;
+  font-size: 0.95rem;
+  color: #d4c5a0;
+  margin-bottom: 15px;
+}
+
+
+/* Grid of cards (SMALLER SIZE) */
+.memory-grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr); /* 6 كروت في الصف */
+  gap: 8px;
+  padding: 12px;
+  overflow-y: auto;
+}
+
+/* Smaller cards */
+.memory-card-inner {
+  position: relative;
+  width: 100%;
+  padding-top: 65%; /* أصغر من 80% → أصغر كتير */
+  transform-style: preserve-3d;
+  transition: transform 0.35s;
+}
+
+/* Icon sizes smaller */
+.memory-front {
+  font-size: 1rem;
+}
+
+.memory-back {
+  font-size: 1.6rem;
+}
+
+.memory-card.flipped .memory-card-inner {
+  transform: rotateY(180deg);
+}
+
+.memory-face {
+  position: absolute;
+  inset: 0;
+  border-radius: 8px; /* أصغر */
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backface-visibility: hidden;
+}
+
+/* Front */
+.memory-front {
+  background: linear-gradient(135deg, #3b3028, #2a2220);
+  border: 1px solid rgba(244, 227, 192, 0.4);
+  font-size: 1.4rem;
+  color: #f4e3c0;
+}
+
+/* Back (symbol) */
+.memory-back {
+  background: #f4e3c0;
+  color: #2a2220;
+  transform: rotateY(180deg);
+  font-size: 2rem;
+}
+
+/* Footer */
+.memory-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 8px;
+  padding: 8px 10px 0;
+  border-top: 1px solid rgba(244, 227, 192, 0.2);
+  font-size: 0.95rem;
+  color: #f4e3c0;
+}
+
+.memory-restart {
+  padding: 6px 16px;
+  border-radius: 8px;
+  border: none;
+  background: #b58946;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.memory-restart:hover {
+  background: #8d6a32;
+  transform: scale(1.03);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .memory-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .memory-card-inner {
+    padding-top: 85%;
+  }
+}
+
+.memory-icon {
+  width: 70%;
+  height: 70%;
+  object-fit: contain;
+}
+
+/* Preview Card */
+.artifact-preview-card {
+  max-width: 320px;
+  background: #fff;
+  border-radius: 16px;
+  padding: 18px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.15);
+  border: 2px solid #e5d3b3;
+  text-align: center;
+  transition: 0.3s;
+  /* margin: 20px auto; */
+}
+
+.artifact-preview-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.25);
+}
+
+.artifact-preview-icon {
+  font-size: 2.3rem;
+  margin-bottom: 8px;
+}
+
+.artifact-preview-card button {
+  padding: 8px 20px;
+  background: #b58946;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.artifact-preview-card button:hover {
+  background: #8d6a32;
+}
+
+/* Overlay */
+.artifact-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.artifact-overlay.show {
+  display: flex;
+}
+
+.artifact-container {
+  background: #201914;
+  padding: 20px;
+  color: white;
+  border-radius: 16px;
+  width: 90%;
+  max-width: 600px;
+  text-align: center;
+  position: relative;
+}
+
+.artifact-close {
+  position: absolute;
+  right: 10px;
+  top: 8px;
+  font-size: 1.8rem;
+  border: none;
+  background: transparent;
+  color: #f4e3c0;
+  cursor: pointer;
+}
+
+.artifact-title {
+  color: #f4e3c0;
+  margin-bottom: 10px;
+}
+
+/* Artifact Image */
+.artifact-image {
+  width: 65%;
+  max-height: 220px;
+  object-fit: contain;
+  margin: 10px auto 20px;
+  border-radius: 12px;
+  background: #3b3028;
+  padding: 12px;
+}
+
+/* Options */
+.artifact-options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 15px 0;
+}
+
+.artifact-options button {
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  background: #b58946;
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.artifact-options button:hover {
+  background: #8d6a32;
+  transform: scale(1.03);
+}
+
+/* Footer */
+.artifact-footer {
+  margin-top: 10px;
+  font-size: 1rem;
+  color: #f4e3c0;
+}
+
+.artifact-restart {
+  margin-top: 8px;
+  padding: 6px 16px;
+  border-radius: 8px;
+  border: none;
+  background: #b58946;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.artifact-restart:hover {
+  background: #8d6a32;
+  transform: scale(1.03);
+}

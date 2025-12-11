@@ -1,0 +1,164 @@
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  background: #f4f0e9;
+  color: #3a2e2e;
+}
+
+/* HERO */
+.collections-hero {
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.2)),
+    url("https://ramsestours.com/wp-content/uploads/2023/06/image-473.png");
+  background-size: cover;
+  background-position: center;
+  height: 55vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  padding: 0 20px;
+}
+
+.collections-hero h1 {
+  font-size: 3rem;
+  margin: 0;
+}
+
+.collections-hero p {
+  font-size: 1.3rem;
+  max-width: 700px;
+  margin: 15px auto;
+}
+
+/* HIGHLIGHTS */
+.highlights {
+  padding: 70px 20px;
+  text-align: center;
+}
+
+.highlight-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+  margin-top: 40px;
+}
+
+.highlight-grid .item {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+  transition: 0.3s;
+}
+
+.highlight-grid .item:hover {
+  transform: translateY(-7px);
+}
+
+.highlight-grid img {
+  width: 100%;
+  height: 230px;
+  object-fit: cover;
+}
+
+.highlight-grid h3 {
+  margin: 15px;
+  font-size: 1.4rem;
+}
+
+.highlight-grid p {
+  margin: 0 15px 20px;
+  color: #6e5b5b;
+}
+
+/* CATEGORIES */
+.categories {
+  padding: 70px 20px;
+  background: #fff;
+  text-align: center;
+}
+
+.cat-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+  margin-top: 40px;
+}
+
+.cat {
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.cat img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  filter: brightness(80%);
+  transition: 0.3s;
+}
+
+.cat:hover img {
+  transform: scale(1.05);
+  filter: brightness(100%);
+}
+
+.cat span {
+  position: absolute;
+  bottom: 15px;
+  left: 20px;
+  font-size: 1.3rem;
+  color: white;
+  font-weight: 600;
+}
+
+/* GALLERY */
+.gallery {
+  padding: 70px 20px;
+  text-align: center;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  margin-top: 30px;
+}
+
+.gallery-grid img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.more-btn {
+  padding: 12px 30px;
+  background: #b58946;
+  color: white;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.more-btn:hover {
+  background: #8d6a32;
+  transform: scale(1.05);
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .highlight-grid,
+  .cat-grid,
+  .gallery-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .collections-hero h1 {
+    font-size: 2.2rem;
+  }
+}

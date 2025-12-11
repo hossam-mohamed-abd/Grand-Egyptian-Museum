@@ -1,0 +1,133 @@
+
+/* =============================
+   Learn Section (3 Cards Over BG)
+============================= */
+
+.learn-section {
+  position: relative;
+  width: 100%;
+  height: auto;
+  padding: 100px 0;
+  overflow: hidden;
+}
+.learn-bg {
+  position: absolute;
+  inset: 0;
+  /* background-image: url("../../image/learn.png"); */
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; /* الصورة ثابتة */
+  z-index: 1;
+  filter: brightness(60%);
+}
+
+/* Learn Section Title */
+.learn-header {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  margin-bottom: 45px;
+  margin-top: 20px;
+}
+
+.learn-header h2 {
+  font-size: 2.6rem;
+  color: #f4e3c0; /* Egyptian Gold */
+  margin-bottom: 10px;
+  letter-spacing: 0.5px;
+}
+
+.learn-header p {
+  font-size: 1.1rem;
+  color: #e0d3c0;
+  max-width: 650px;
+  margin: 0 auto;
+}
+.learn-line {
+  width: 120px;
+  height: 4px;
+  background: linear-gradient(90deg, #d4a056, #b58946);
+  margin: 10px auto 15px;
+  border-radius: 2px;
+}
+/* Cards container */
+.learn-cards-container {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+  width: 90%;
+  max-width: 1300px;
+  margin: auto;
+}
+
+/* Individual Card */
+.learn-card {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px);
+  border-radius: 14px;
+  padding: 25px;
+  border: 1.5px solid rgba(212, 160, 86, 0.4);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+  color: white;
+  transition: 0.3s;
+}
+
+.learn-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+}
+
+.learn-card h3 {
+  font-size: 1.6rem;
+  color: #f4e3c0;
+  margin-bottom: 10px;
+}
+
+.learn-card p {
+  font-size: 1rem;
+  margin-bottom: 15px;
+  color: #eee;
+}
+
+/* List */
+.learn-card ul {
+  padding: 0;
+  margin: 0 0 20px 0;
+  list-style: none;
+}
+
+.learn-card ul li {
+  margin-bottom: 8px;
+  padding-left: 22px;
+  position: relative;
+  color: #f4e3c0;
+  font-size: 1.05rem;
+}
+
+/* Button */
+.learn-btn {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  background: #d4a056;
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.learn-btn:hover {
+  background: #b58946;
+  transform: scale(1.05);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .learn-cards-container {
+    grid-template-columns: 1fr;
+  }
+}

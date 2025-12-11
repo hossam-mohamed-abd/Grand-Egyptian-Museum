@@ -1,0 +1,114 @@
+
+/* Dark overlay */
+.bg-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(15, 15, 15, 0.55);
+  backdrop-filter: blur(3px);
+  z-index: 1;
+}
+
+/* Content */
+.plans-wrapper {
+  position: relative;
+  z-index: 2;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+/* Title */
+.plans-wrapper h1 {
+  font-size: 3rem;
+  margin-bottom: 10px;
+  color: #f4e3c0;
+  text-shadow: 0 0 8px rgba(255, 220, 150, 0.5);
+}
+
+/* Description */
+.description {
+  max-width: 700px;
+  margin: 0 auto 40px;
+  font-size: 1.2rem;
+  color: #f1e7d7;
+  opacity: 0.9;
+}
+
+/* Layout */
+.plans-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+  margin-top: 30px;
+}
+
+/* Card */
+.plan-card {
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(8px);
+  border-radius: 12px;
+  padding: 25px;
+  border: 1px solid rgba(255, 230, 180, 0.3);
+  transition: 0.3s;
+}
+
+.plan-card:hover {
+  transform: translateY(-7px);
+  box-shadow: 0 0 20px rgba(255, 210, 130, 0.4);
+}
+
+/* Card Title */
+.plan-card h2 {
+  color: #f4e3c0;
+  margin-bottom: 15px;
+  font-size: 1.6rem;
+}
+
+/* List */
+.plan-card ul {
+  padding: 0;
+  margin: 0 0 20px;
+  list-style: none;
+}
+
+.plan-card ul li {
+  margin-bottom: 8px;
+  color: #f6e8cf;
+  font-size: 1.05rem;
+}
+
+/* Button */
+.plan-card button {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  background: linear-gradient(135deg, #c29a52, #8d6a32);
+  color: white;
+  font-size: 1.1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.plan-card button:hover {
+  opacity: 0.9;
+  transform: scale(1.03);
+}
+.price {
+  display: block;
+  margin-bottom: 15px;
+  font-size: 1.15rem;
+  font-weight: bold;
+  color: #f4e3c0;
+  text-shadow: 0 0 6px rgba(255, 220, 150, 0.4);
+}
+
+
+/* Mobile */
+@media(max-width: 768px) {
+  .plans-container {
+    grid-template-columns: 1fr;
+  }
+}
