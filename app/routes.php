@@ -55,6 +55,10 @@ $router->get('/event-details', function () {
     $id = $_GET["id"] ?? null;
     (new EventsController)->show($id);
 });
+$router->get('/plans', function () {
+    require APP_PATH . "/Controllers/PlansController.php";
+    (new PlansController)->index();
+});
 
 
 return $router;
