@@ -49,103 +49,35 @@
     (new EventsController)->index();
     ?>
 
-    <section class="collections-preview">
-      <h2 class="col-title">Explore Our Collections</h2>
-      <p class="col-desc">
-        Discover some of the most iconic artifacts, statues, and architectural
-        wonders inside the Grand Egyptian Museum.
-      </p>
+    <!-- collections-preview- -->
+    <!-- Collections Preview -->
+    <?php
+    require_once APP_PATH . "/models/Collection.php";
 
-      <div class="col-grid">
-        <div class="col-item">
-          <img src="<?= ASSETS ?>image//collage.png" alt="Statues Hall" />
-          <h4>Royal Statues Hall</h4>
-          <p>A breathtaking view of Egypt’s colossal masterpieces.</p>
-        </div>
+    if (!isset($collections_preview)) {
+      $collections_preview = Collection::limit(3); // أول 3 فقط للعرض
+    }
+    ?>
 
-        <div class="col-item">
-          <img src="https://www.swissinfo.ch/content/wp-content/uploads/sites/13/2024/04/592468480_highres.jpg"
-            alt="Artifacts" />
-          <h4>Ancient Artifacts</h4>
-          <p>Rare pieces showcasing Egypt’s rich cultural history.</p>
-        </div>
+    <?php include VIEW_PATH . "components/collections-preview-section.php"; ?>
 
-        <div class="col-item">
-          <img src="https://english.ahram.org.eg/Media/News/2019/12/17/2019-637122001154016691-401.jpg" alt="Mummies" />
-          <h4>Royal Mummies Zone</h4>
-          <p>Discover preserved kings and queens from ancient dynasties.</p>
-        </div>
-      </div>
 
-      <div class="center-btn">
-        <a href="<?= BASE_URL ?>collections" class="col-btn">View Full Collections</a>
-      </div>
-    </section>
 
-    <section id="learn-section" class="learn-section">
-      <!-- Background -->
-      <div class="learn-bg" style="background-image: url('<?= ASSETS ?>image/learn.png');">
-      </div>
+    <!-- learn-section- -->
+    <?php
+    // تأكد إن المسار للموديل صحيح
+    require_once APP_PATH . '/models/LearnCourse.php';
 
-      <!-- Section Title -->
-      <div class="learn-header">
-        <h2>Learn & Education</h2>
-        <div class="learn-line"></div>
-        <p>
-          Explore our educational programs, workshops, and virtual learning
-          experiences inspired by Ancient Egypt.
-        </p>
-      </div>
+    // جلب البيانات لو مش موجودة
+    if (!isset($courses)) {
+      $courses = LearnCourse::all();
+    }
+    ?>
+    <!-- بعد كده include للـ component -->
+    <?php include VIEW_PATH . 'components/learn-section.php'; ?>
 
-      <!-- Cards Container -->
-      <div class="learn-cards-container">
-        <!-- Card 1 -->
-        <div class="learn-card">
-          <h3>Schools Programs</h3>
-          <p>
-            Educational tours and guided workshops tailored for school groups.
-          </p>
-          <ul>
-            <li>Guided Learning Tour</li>
-            <li>Hands-on Activities</li>
-            <li>Certified Educational Content</li>
-          </ul>
-          <a href="<?= BASE_URL ?>booking"><button class="learn-btn">Book Now</button></a>
 
-        </div>
 
-        <!-- Card 2 -->
-        <div class="learn-card">
-          <h3>Youth Workshops</h3>
-          <p>
-            Creative sessions and interactive activities for young explorers.
-          </p>
-          <ul>
-            <li>Art & History Workshops</li>
-            <li>Heritage Exploration</li>
-            <li>Group Projects</li>
-          </ul>
-          <a href="<?= BASE_URL ?>booking"><button class="learn-btn">Book Now</button></a>
-
-        </div>
-
-        <!-- Card 3 -->
-        <div class="learn-card">
-          <h3>Online Learning</h3>
-          <p>
-            Digital lessons and virtual programs about Ancient Egyptian
-            culture.
-          </p>
-          <ul>
-            <li>Virtual Tours</li>
-            <li>Interactive History Lessons</li>
-            <li>Downloadable Resources</li>
-          </ul>
-          <a href="<?= BASE_URL ?>booking"><button class="learn-btn">Book Now</button></a>
-
-        </div>
-      </div>
-    </section>
 
     <section id="kids-zone" class="kids-zone" id="kids">
       <div class="kids-header">

@@ -8,6 +8,7 @@ $router = new Router(BASE_URL);
    Public Pages
 --------------------*/
 
+
 // Home
 $router->get('/', function () {
     require VIEW_PATH . 'home.php';
@@ -23,10 +24,20 @@ $router->get('/booking', function () {
     require VIEW_PATH . 'booking/booking.php';
 });
 
-// Collections
+//--> Collections
+// Collections main page
 $router->get('/collections', function () {
-    require VIEW_PATH . 'Collections/Collections.php';
+    require APP_PATH . "/Controllers/CollectionsController.php";
+    (new CollectionsController)->index();
 });
+
+// API Load More
+$router->get('/api/collections/load-more', function () {
+    require APP_PATH . "/Controllers/CollectionsController.php";
+    (new CollectionsController)->loadMore();
+});
+
+
 
 // Donate
 $router->get('/donate', function () {

@@ -1,0 +1,39 @@
+.items-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+    padding: 40px;
+}
+
+.item-card {
+    background: #fff;
+    padding: 15px;
+    border-radius: 12px;
+    border: 1px solid #d8c5a3;
+    transition: 0.3s;
+}
+
+.item-card:hover {
+    transform: translateY(-5px);
+}
+
+.item-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.load-more-wrapper {
+    text-align: center;
+    padding: 30px;
+}
+
+.load-btn {
+    background: #b58946;
+    color: #fff;
+    padding: 12px 30px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+}

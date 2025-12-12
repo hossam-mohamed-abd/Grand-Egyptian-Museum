@@ -231,7 +231,7 @@ $basePrice = $selectedPlan ? (float)$selectedPlan['price'] : 150.00;
             </div>
 
             <p class="small-note" style="text-align:center;margin-top:10px;">
-              بالضغط على Proceed to Payment سيتم إرسال بيانات الحجز وحفظها — ستظهر صفحة الدفع بعد ذلك.
+            سيتم ارسال تذكرتك على الايميل الخاص بك يرجى الدفع من خلاله
             </p>
           </div>
         </div>
