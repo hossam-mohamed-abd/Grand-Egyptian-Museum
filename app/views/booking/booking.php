@@ -1,26 +1,45 @@
 <?php
-require_once APP_PATH . '/config/config.php'; ?>
+require_once APP_PATH . '/config/config.php';
+
+// قراءة plan_id من URL
+$planId = $_GET['plan'] ?? null;
+$selectedPlan = null;
+
+if ($planId) {
+    require_once APP_PATH . "/models/Plan.php";
+    $selectedPlan = Plan::find($planId);
+}
+
+// لو مفيش خطة → السعر الأساسي 150
+$basePrice = $selectedPlan ? (float)$selectedPlan['price'] : 150.00;
+?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>Book Your Tickets - Grand Egyptian Museum</title>
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  <!-- bootstrap -->
   <link rel="stylesheet" href="<?= ASSETS ?>css/bootstrap.min.css" />
-  <!-- css components -->
   <link rel="stylesheet" href="<?= ASSETS ?>css/components/navbar.component.css">
   <link rel="stylesheet" href="<?= ASSETS ?>css/components/footer-section.component.css" />
   <link rel="stylesheet" href="<?= ASSETS ?>css/components/ai-component.css" />
   <link rel="stylesheet" href="<?= ASSETS ?>css/booking.css">
+  <style>
+    /* تعديل عرض الفورم داخليًا قليلًا بحيث يشتغل مع CSSك */
+    .booking-container { padding-bottom: 3rem; }
+    .bottom-summary { margin-top: 1.8rem; }
+    .small-note { font-size: 0.9rem; color: #666; margin-top: 0.4rem; }
+  </style>
 </head>
-
 <body>
   <?php include VIEW_PATH . 'components/navbar.php'; ?>
+
   <div class="documentNotNavbar">
-      <div style="width:100%;height:60px"></div>
+    <div style="height:60px"></div>
+
+    <!-- HERO -->
     <div class="hero">
       <div class="hero-content">
         <h1>Book Your Tickets</h1>
@@ -28,138 +47,157 @@ require_once APP_PATH . '/config/config.php'; ?>
       </div>
     </div>
 
-    <div class="container">
-      <div class="experience-card">
-        <div class="experience-header">
-          <div class="experience-icon">
-            <img class="w-100" src="<?= ASSETS ?>image/logo.png" alt="" />
-          </div>
-          <div class="experience-details">
-            <h2>Grand Egyptian Museum Tour</h2>
-            <div class="experience-meta">
-              <span><i class="fa-solid fa-building-columns"></i> Museum Visit</span>
-              <span><i class="fa-solid fa-clock"></i> 2 Hours</span>
-              <span><i class="fa-regular fa-money-bill-1"></i> From 75 EGP</span>
+    <div class="container booking-container">
+
+      <!-- Plan card (optional) -->
+      <?php if ($selectedPlan): ?>
+        <div class="experience-card">
+          <div class="experience-header">
+            <div class="experience-icon">
+              <img class="w-100" src="<?= htmlspecialchars($selectedPlan['image']) ?>" alt="">
             </div>
-            <p class="experience-desc">
-              Explore the magnificent Grand Egyptian Museum, home to over
-              100,000 artifacts including the complete Tutankhamun collection.
-              Experience ancient Egyptian civilization through state-of-the-art
-              displays and interactive exhibits.
-            </p>
+            <div class="experience-details">
+              <h2><?= htmlspecialchars($selectedPlan['name']) ?></h2>
+              <div class="experience-meta">
+                <span><i class="fa-solid fa-building-columns"></i> <?= htmlspecialchars($selectedPlan['halls_count']) ?> Halls</span>
+                <span><i class="fa-solid fa-clock"></i> <?= htmlspecialchars($selectedPlan['duration']) ?></span>
+                <span><i class="fa-regular fa-money-bill-1"></i> From <?= number_format($selectedPlan['price'],2) ?> EGP</span>
+              </div>
+              <p class="experience-desc"><?= nl2br(htmlspecialchars($selectedPlan['description'])) ?></p>
+            </div>
           </div>
         </div>
-      </div>
+      <?php endif; ?>
 
-      <div class="main-grid">
-        <div class="left-column">
-          <div class="section">
-            <h2 class="section-title"><i class="fa-solid fa-ticket"></i> Select Your Tickets</h2>
+      <!-- FORM: جميع الحقول داخل نفس الفورم -->
+      <form id="bookingForm" class="booking-form" method="POST" action="<?= BASE_URL ?>booking/submit">
+        <div class="main-grid">
 
-            <div class="ticket-row">
-              <div class="ticket-info">
-                <div class="ticket-icon">
-                  <i class="fa-solid fa-user"></i>
+          <!-- LEFT: Tickets + User info -->
+          <div class="left-column">
+
+            <!-- Tickets -->
+            <div class="section">
+              <h2 class="section-title"><i class="fa-solid fa-ticket"></i> Select Your Tickets</h2>
+
+              <!-- Adult -->
+              <div class="ticket-row">
+                <div class="ticket-info">
+                  <div class="ticket-icon"><i class="fa-solid fa-user"></i></div>
+                  <div class="ticket-details">
+                    <h3>Adult</h3>
+                    <div class="ticket-price" id="adult-price"></div>
+                    <div class="small-note">Full price (no discount)</div>
+                  </div>
                 </div>
-                <div class="ticket-details">
-                  <h3>Adult Ticket</h3>
-                  <div class="ticket-price">150 EGP</div>
+                <div class="ticket-counter">
+                  <button type="button" class="counter-btn" onclick="updateTicket('adult', -1)">−</button>
+                  <span class="counter-value" id="adult-count">0</span>
+                  <button type="button" class="counter-btn" onclick="updateTicket('adult', 1)">+</button>
                 </div>
               </div>
-              <div class="ticket-counter">
-                <button class="counter-btn" onclick="updateTicket('adult', -1)">
-                  −
-                </button>
-                <span class="counter-value" id="adult-count">0</span>
-                <button class="counter-btn" onclick="updateTicket('adult', 1)">
-                  +
-                </button>
+
+              <!-- Child -->
+              <div class="ticket-row">
+                <div class="ticket-info">
+                  <div class="ticket-icon"><i class="fa-solid fa-children"></i></div>
+                  <div class="ticket-details">
+                    <h3>Child</h3>
+                    <div class="ticket-price" id="child-price"></div>
+                    <div class="small-note">Childs pay 40% of base price (60% discount)</div>
+                  </div>
+                </div>
+                <div class="ticket-counter">
+                  <button type="button" class="counter-btn" onclick="updateTicket('child', -1)">−</button>
+                  <span class="counter-value" id="child-count">0</span>
+                  <button type="button" class="counter-btn" onclick="updateTicket('child', 1)">+</button>
+                </div>
+              </div>
+
+              <!-- Student -->
+              <div class="ticket-row">
+                <div class="ticket-info">
+                  <div class="ticket-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+                  <div class="ticket-details">
+                    <h3>Student</h3>
+                    <div class="ticket-price" id="student-price"></div>
+                    <div class="small-note">Students pay 70% of base price (30% discount)</div>
+                  </div>
+                </div>
+                <div class="ticket-counter">
+                  <button type="button" class="counter-btn" onclick="updateTicket('student', -1)">−</button>
+                  <span class="counter-value" id="student-count">0</span>
+                  <button type="button" class="counter-btn" onclick="updateTicket('student', 1)">+</button>
+                </div>
               </div>
             </div>
 
-            <div class="ticket-row">
-              <div class="ticket-info">
-                <div class="ticket-icon">
-                  <i class="fa-solid fa-children"></i>
-                </div>
-                <div class="ticket-details">
-                  <h3>Child Ticket</h3>
-                  <div class="ticket-price">75 EGP</div>
-                </div>
+            <!-- Promo -->
+            <div class="section">
+              <h2 class="section-title"><i class="fa-solid fa-tag"></i> Promo Code</h2>
+              <div class="promo-section">
+                <input type="text" class="promo-input" id="promo-code" placeholder="Enter promo code (e.g. GEM10)">
+                <button type="button" class="promo-btn" onclick="applyPromo()">Apply</button>
               </div>
-              <div class="ticket-counter">
-                <button class="counter-btn" onclick="updateTicket('child', -1)">
-                  −
-                </button>
-                <span class="counter-value" id="child-count">0</span>
-                <button class="counter-btn" onclick="updateTicket('child', 1)">
-                  +
-                </button>
+              <div id="promo-message" class="promo-message" style="display:none"></div>
+            </div>
+
+            <!-- User Info -->
+            <div class="section">
+              <h2 class="section-title"><i class="fa-solid fa-circle-info"></i> Your Information</h2>
+              <div class="form-grid">
+                <div class="form-group">
+                  <label>Full Name *</label>
+                  <input type="text" name="full_name" required>
+                </div>
+
+                <div class="form-group">
+                  <label>Email *</label>
+                  <input type="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                  <label>Phone *</label>
+                  <input type="tel" name="phone" required>
+                </div>
+
+                <div class="form-group">
+                  <label>Visit Date *</label>
+                  <input type="date" name="visit_date" required>
+                </div>
+
+                <div class="form-group full">
+                  <label>Visit Time *</label>
+                  <input type="time" name="visit_time" required>
+                </div>
+
+                <div class="form-group full">
+                  <label>Notes (optional)</label>
+                  <textarea name="notes"></textarea>
+                </div>
+
+                <!-- Hidden inputs (set by JS) -->
+                <input type="hidden" name="plan_id" value="<?= htmlspecialchars($planId) ?>">
+                <input type="hidden" name="base_price" id="base_price_field" value="<?= number_format($basePrice,2,'.','') ?>">
+                <input type="hidden" name="tickets_adult" id="tickets_adult" value="0">
+                <input type="hidden" name="tickets_child" id="tickets_child" value="0">
+                <input type="hidden" name="tickets_student" id="tickets_student" value="0">
+                <input type="hidden" name="total_tickets" id="total_tickets" value="0">
+                <input type="hidden" name="total_price" id="final-price" value="0.00">
+
               </div>
             </div>
 
-            <div class="ticket-row">
-              <div class="ticket-info">
-                <div class="ticket-icon"><i class="fa-solid fa-graduation-cap"></i></div>
-                <div class="ticket-details">
-                  <h3>Student Ticket</h3>
-                  <div class="ticket-price">100 EGP</div>
-                </div>
-              </div>
-              <div class="ticket-counter">
-                <button class="counter-btn" onclick="updateTicket('student', -1)">
-                  −
-                </button>
-                <span class="counter-value" id="student-count">0</span>
-                <button class="counter-btn" onclick="updateTicket('student', 1)">
-                  +
-                </button>
-              </div>
-            </div>
-          </div>
+          </div> <!-- end left-column -->
 
-          <div class="section">
-            <h2 class="section-title"><i class="fa-solid fa-circle-dollar-to-slot"></i> Promo Code</h2>
-            <div class="promo-section">
-              <input type="text" class="promo-input" id="promo-code" placeholder="Enter promo code" />
-              <button class="promo-btn" onclick="applyPromo()">Apply</button>
-            </div>
-            <div class="promo-message" id="promo-message"></div>
-          </div>
+          <!-- RIGHT column intentionally left empty (we put summary at bottom per request) -->
+          <div></div>
 
-          <div class="section">
-            <h2 class="section-title"><i class="fa-solid fa-circle-info"></i> Your Information</h2>
-            <form class="form-grid">
-              <div class="form-group">
-                <label>Full Name *</label>
-                <input type="text" required placeholder="Enter your full name" />
-              </div>
-              <div class="form-group">
-                <label>Email *</label>
-                <input type="email" required placeholder="your.email@example.com" />
-              </div>
-              <div class="form-group">
-                <label>Phone Number *</label>
-                <input type="tel" required placeholder="+20 XXX XXX XXXX" />
-              </div>
-              <div class="form-group">
-                <label>Visit Date *</label>
-                <input type="date" required />
-              </div>
-              <div class="form-group full">
-                <label>Visit Time *</label>
-                <input type="time" required />
-              </div>
-              <div class="form-group full">
-                <label>Additional Notes (Optional)</label>
-                <textarea placeholder="Any special requests or information..."></textarea>
-              </div>
-            </form>
-          </div>
-        </div>
+        </div> <!-- end main-grid -->
 
-        <div style="" class="summary-sidebar">
-          <div class="summary-card">
+        <!-- BOTTOM SUMMARY (under the form fields) -->
+        <div class="bottom-summary">
+          <div class="summary-card" style="max-width:900px;margin:0 auto;">
             <h3 class="summary-title">Booking Summary</h3>
 
             <div id="ticket-summary"></div>
@@ -171,40 +209,100 @@ require_once APP_PATH . '/config/config.php'; ?>
               <span id="subtotal">0 EGP</span>
             </div>
 
-            <div class="summary-item discount" id="discount-row" style="display: none">
+            <div class="summary-item">
               <span>Discount:</span>
               <span id="discount-amount">0 EGP</span>
             </div>
+
+            <?php if ($selectedPlan): ?>
+            <div class="summary-item">
+              <span>Plan Base Price:</span>
+              <span><?= number_format($basePrice,2) ?> EGP</span>
+            </div>
+            <?php endif; ?>
 
             <div class="summary-item total">
               <span>Total:</span>
               <span id="total">0 EGP</span>
             </div>
 
-            <button class="book-btn" onclick="proceedToPayment()">
-              Proceed to Payment
-            </button>
+            <div style="margin-top:12px; text-align:center;">
+              <button class="book-btn" type="submit">Proceed to Payment</button>
+            </div>
+
+            <p class="small-note" style="text-align:center;margin-top:10px;">
+              بالضغط على Proceed to Payment سيتم إرسال بيانات الحجز وحفظها — ستظهر صفحة الدفع بعد ذلك.
+            </p>
           </div>
         </div>
-      </div>
-    </div>
+
+      </form> <!-- end form -->
+
+    </div> <!-- end container -->
+
     <?php include VIEW_PATH . 'components/footer.php'; ?>
   </div>
 
+  <!-- ============================
+       JS (تأكد أنه لا توجد أخطاء)
+  ============================ -->
   <script>
+    // basePrice من الـ PHP
+    const basePrice = parseFloat("<?= number_format($basePrice,2,'.','') ?>");
+
+    // خصومات: child 40% of base, student 70%, adult 100%
     const tickets = {
-      adult: { price: 150, count: 0, name: "Adult Ticket" },
-      child: { price: 75, count: 0, name: "Child Ticket" },
-      student: { price: 100, count: 0, name: "Student Ticket" },
+      adult:   { price: basePrice, count: 0, name: "Adult" },
+      child:   { price: Math.round(basePrice * 0.40), count: 0, name: "Child" },
+      student: { price: Math.round(basePrice * 0.70), count: 0, name: "Student" },
     };
 
-    let discountPercent = 0;
+    let discountPercent = 0; // from promo
     let promoApplied = false;
+
+    // init prices on DOM ready
+    document.addEventListener("DOMContentLoaded", () => {
+      document.getElementById("adult-price").textContent = tickets.adult.price + " EGP";
+      document.getElementById("child-price").textContent = tickets.child.price + " EGP";
+      document.getElementById("student-price").textContent = tickets.student.price + " EGP";
+
+      updateSummary();
+    });
 
     function updateTicket(type, change) {
       tickets[type].count = Math.max(0, tickets[type].count + change);
-      document.getElementById(`${type}-count`).textContent =
-        tickets[type].count;
+      document.getElementById(type + "-count").textContent = tickets[type].count;
+      updateSummary();
+    }
+
+    function applyPromo() {
+      const code = document.getElementById("promo-code").value.trim().toUpperCase();
+      const msg = document.getElementById("promo-message");
+
+      if (!code) {
+        promoApplied = false;
+        discountPercent = 0;
+        msg.style.display = "block";
+        msg.className = "promo-message error";
+        msg.textContent = "✗ Please enter a code";
+        updateSummary();
+        return;
+      }
+
+      // مثال بسيط: GEM10 => 10%
+      if (code === "GEM10") {
+        promoApplied = true;
+        discountPercent = 10;
+        msg.style.display = "block";
+        msg.className = "promo-message success";
+        msg.textContent = "✓ Promo applied: 10% off";
+      } else {
+        promoApplied = false;
+        discountPercent = 0;
+        msg.style.display = "block";
+        msg.className = "promo-message error";
+        msg.textContent = "✗ Invalid code";
+      }
       updateSummary();
     }
 
@@ -212,87 +310,63 @@ require_once APP_PATH . '/config/config.php'; ?>
       let summaryHTML = "";
       let subtotal = 0;
 
-      for (let type in tickets) {
-        if (tickets[type].count > 0) {
-          const lineTotal = tickets[type].count * tickets[type].price;
-          subtotal += lineTotal;
-          summaryHTML += `
-                        <div class="summary-item ticket-line">
-                            <span>${tickets[type].name} × ${tickets[type].count}</span>
-                            <span>${lineTotal} EGP</span>
-                        </div>
-                    `;
+      for (let key in tickets) {
+        const t = tickets[key];
+        if (t.count > 0) {
+          const line = t.count * t.price;
+          subtotal += line;
+          summaryHTML += `<div class="summary-item ticket-line">
+                            <span>${t.name} × ${t.count}</span>
+                            <span>${line} EGP</span>
+                          </div>`;
         }
       }
 
-      if (summaryHTML === "") {
-        summaryHTML =
-          '<div class="summary-item ticket-line" style="text-align: center; color: #999;">No tickets selected</div>';
+      if (!summaryHTML) {
+        summaryHTML = `<p style="text-align:center;color:#777;">No tickets selected</p>`;
       }
 
-      document.getElementById("ticket-summary").innerHTML = summaryHTML;
-      document.getElementById("subtotal").textContent = `${subtotal} EGP`;
-
+      // احتساب الخصم (من الـ subtotal فقط)
       const discount = Math.round(subtotal * (discountPercent / 100));
       const total = subtotal - discount;
 
-      if (discount > 0) {
-        document.getElementById("discount-row").style.display = "flex";
-        document.getElementById(
-          "discount-amount"
-        ).textContent = `-${discount} EGP`;
-      } else {
-        document.getElementById("discount-row").style.display = "none";
-      }
+      // عرض القيم
+      document.getElementById("ticket-summary").innerHTML = summaryHTML;
+      document.getElementById("subtotal").textContent = subtotal + " EGP";
+      document.getElementById("discount-amount").textContent = "-" + discount + " EGP";
+      document.getElementById("total").textContent = total + " EGP";
 
-      document.getElementById("total").textContent = `${total} EGP`;
+      // تعبئة الحقول المخفية قبل الإرسال
+      document.getElementById("tickets_adult").value = tickets.adult.count;
+      document.getElementById("tickets_child").value = tickets.child.count;
+      document.getElementById("tickets_student").value = tickets.student.count;
+      document.getElementById("total_tickets").value = (tickets.adult.count + tickets.child.count + tickets.student.count);
+      // final price = total (after discount)
+      document.getElementById("final-price").value = total.toFixed(2);
     }
 
-    function applyPromo() {
-      const promoCode = document
-        .getElementById("promo-code")
-        .value.toUpperCase();
-      const messageEl = document.getElementById("promo-message");
-
-      if (promoCode === "GEM10") {
-        discountPercent = 10;
-        promoApplied = true;
-        messageEl.className = "promo-message success";
-        messageEl.textContent = "✓ Promo code applied! You saved 10%";
-      } else if (promoCode === "") {
-        messageEl.className = "promo-message error";
-        messageEl.textContent = "✗ Please enter a promo code";
-      } else {
-        discountPercent = 0;
-        promoApplied = false;
-        messageEl.className = "promo-message error";
-        messageEl.textContent = "✗ Invalid promo code";
-      }
-
-      updateSummary();
-    }
-
-    function proceedToPayment() {
-      const totalTickets =
-        tickets.adult.count + tickets.child.count + tickets.student.count;
-
+    // Optional: prevent double-submit (simple)
+    document.getElementById('bookingForm').addEventListener('submit', function (e) {
+      // ensure at least one ticket
+      const totalTickets = parseInt(document.getElementById("total_tickets").value, 10) || 0;
       if (totalTickets === 0) {
-        alert("Please select at least one ticket");
-        return;
+        e.preventDefault();
+        alert("Please select at least one ticket before proceeding.");
+        return false;
       }
 
-      const total = document.getElementById("total").textContent;
-      alert(
-        `Processing payment for ${total}...\n\nThis would redirect to payment gateway.`
-      );
-    }
-
-    updateSummary();
+      // disable submit button to prevent duplicates
+      const btn = this.querySelector('button[type="submit"]');
+      if (btn) {
+        btn.disabled = true;
+        btn.textContent = "Processing...";
+      }
+    });
   </script>
+
   <?php include VIEW_PATH . 'components/ai.php'; ?>
   <script src="<?= ASSETS ?>js/bootstrap.bundle.min.js"></script>
   <script src="<?= ASSETS ?>js/navbar.component.js"></script>
   <script src="<?= ASSETS ?>js/ai.js"></script>
 </body>
-
 </html>

@@ -32,7 +32,8 @@
       <h1>Visit Plans</h1>
 
       <p class="description">
-        Choose the perfect tour inside the Grand Egyptian Museum and explore the wonders of ancient Egypt through curated routes.
+        Choose the perfect tour inside the Grand Egyptian Museum and explore the wonders of ancient Egypt through
+        curated routes.
       </p>
 
       <div class="plans-container">
@@ -50,9 +51,10 @@
 
             <span class="price">Price: <?= $plan['price'] ?> EGP</span>
 
-            <button onclick="window.location.href='<?= BASE_URL ?>plan-details?id=<?= $plan['id'] ?>'">
+            <button onclick="window.location.href='<?= BASE_URL ?>booking?plan=<?= $plan['id'] ?>'">
               Start Tour
             </button>
+
           </div>
 
         <?php endforeach; ?>
@@ -73,4 +75,5 @@
   <script src="<?= ASSETS ?>js/ai.js"></script>
 
 </body>
+
 </html>

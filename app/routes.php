@@ -2,41 +2,44 @@
 require_once APP_PATH . '/core/Router.php';
 require_once APP_PATH . '/core/Controller.php';
 
-// Create router with base URL
 $router = new Router(BASE_URL);
 
-// Routes
+/* -------------------
+   Public Pages
+--------------------*/
+
+// Home
 $router->get('/', function () {
     require VIEW_PATH . 'home.php';
 });
 
+// Kids Zone
 $router->get('/kids-zone', function () {
     require VIEW_PATH . 'Kids-Zone/KidsZone.php';
 });
 
+// Booking
 $router->get('/booking', function () {
     require VIEW_PATH . 'booking/booking.php';
 });
 
+// Collections
 $router->get('/collections', function () {
     require VIEW_PATH . 'Collections/Collections.php';
 });
 
-$router->get('/plans', function () {
-    require VIEW_PATH . 'plans/plans.php';
-});
-
+// Donate
 $router->get('/donate', function () {
     require VIEW_PATH . 'Donate/Donate.php';
 });
 
-$router->get('/event-details', function () {
-    require VIEW_PATH . 'event-details/event-details.php';
-});
-
+/* -------------------
+      Authentication
+--------------------*/
 $router->get('/login', function () {
     require VIEW_PATH . 'regestration/login/login.php';
 });
+
 $router->get('/register', function () {
     require VIEW_PATH . 'regestration/register/register.php';
 });
@@ -49,17 +52,37 @@ $router->get('/logout', function () {
     exit;
 });
 
-// صفحة التفاصيل
+/* -------------------
+      Events (Dynamic)
+--------------------*/
+
+// Events List
+$router->get('/events', function () {
+    require APP_PATH . "/Controllers/EventsController.php";
+    (new EventsController)->index();
+});
+
+// Event Details
 $router->get('/event-details', function () {
     require APP_PATH . "/Controllers/EventsController.php";
     $id = $_GET["id"] ?? null;
     (new EventsController)->show($id);
 });
+
+/* -------------------
+      Plans (Dynamic)
+--------------------*/
+
+// Plans List
 $router->get('/plans', function () {
     require APP_PATH . "/Controllers/PlansController.php";
     (new PlansController)->index();
 });
 
+$router->post('/booking/submit', function () {
+    require APP_PATH . "/Controllers/BookingController.php";
+    (new BookingController)->submit();
+});
+
 
 return $router;
-
