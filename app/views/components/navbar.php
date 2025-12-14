@@ -8,13 +8,12 @@
   <div>
     <a href="#"><button class="lang-btn" id="langBtn">ع</button></a>
     <?php if (isset($_SESSION["user"])): ?>
-
-      <img id="profileToggle" src="<?= $_SESSION['user']['profile_image']
-        ? ASSETS . 'uploads/' . $_SESSION['user']['profile_image']
-        : ASSETS . 'image/default-user.apng' ?>"
-        style="width:40px;height:40px;border-radius:50%;cursor:pointer;object-fit:cover;">
-
+      <img id="profileToggle" src="<?= !empty($_SESSION['user']['profile_image'])
+        ? BASE_URL . $_SESSION['user']['profile_image']
+        : BASE_URL . 'assets/image/default-user.apng' ?>"
+        style="width:40px;height:40px;border-radius:50%;cursor:pointer;object-fit:cover;" alt="User Avatar">
     <?php else: ?>
+
 
       <a href="<?= BASE_URL ?>login" class="login-btn">Log In</a>
 
@@ -28,34 +27,40 @@
 
 <?php if (isset($_SESSION["user"])): ?>
 
-<div id="glassSidebar" class="glass-sidebar">
+  <div id="glassSidebar" class="glass-sidebar">
 
     <span class="glass-close">&times;</span>
 
     <div class="glass-avatar-wrapper">
-        <img src="<?= BASE_URL ?>assets/image/default-user.apng" class="glass-avatar" alt="User">
+      <img
+        src="<?= !empty($_SESSION['user']['profile_image'])
+          ? BASE_URL . $_SESSION['user']['profile_image']
+          : BASE_URL . 'assets/image/default-user.apng' ?>"
+        class="glass-avatar"
+        alt="User Avatar"
+      >
     </div>
 
-    <h2 class="glass-name"><?= $_SESSION['user']['name'] ?></h2>
-    <p class="glass-email"><?= $_SESSION['user']['email'] ?></p>
+    <h2 class="glass-name"><?= htmlspecialchars($_SESSION['user']['name']) ?></h2>
+    <p class="glass-email"><?= htmlspecialchars($_SESSION['user']['email']) ?></p>
 
     <div class="glass-divider"></div>
 
     <div class="glass-info">
-        <div class="glass-row">
-            <span>Role</span>
-            <span class="gold"><?= $_SESSION["user"]["role"] ?></span>
-        </div>
+      <div class="glass-row">
+        <span>Role</span>
+        <span class="gold"><?= htmlspecialchars($_SESSION["user"]["role"]) ?></span>
+      </div>
 
-        <div class="glass-row">
-            <span>Points</span>
-            <span class="gold"><?= $_SESSION["user"]["points"] ?></span>
-        </div>
+      <div class="glass-row">
+        <span>Points</span>
+        <span class="gold"><?= (int)$_SESSION["user"]["points"] ?></span>
+      </div>
     </div>
 
     <a href="<?= BASE_URL ?>logout" class="glass-logout">Logout</a>
 
-</div>
+  </div>
 
 <?php endif; ?>
 
@@ -80,7 +85,7 @@
     <a href="<?= BASE_URL ?>#learn-section">Learn</a>
     <a href="<?= BASE_URL ?>donate">Donate</a>
     <a href="<?= BASE_URL ?>kids-zone">Kids Zone</a>
-    <a href="<?= BASE_URL ?>#about-section">About</a>
+    <a href="<?= BASE_URL ?>food">Food</a>
   </nav>
 </aside>
 <button class="museum-menu-btn">

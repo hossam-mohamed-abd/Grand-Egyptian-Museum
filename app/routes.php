@@ -14,6 +14,22 @@ $router->get('/', function () {
     require VIEW_PATH . 'home.php';
 });
 
+/* -------------------
+      Food (Static)
+--------------------*/
+
+// Food Categories
+$router->get('/food', function () {
+    require APP_PATH . "/Controllers/FoodController.php";
+    (new FoodController)->categories();
+});
+
+// Food Items (Pizza – static for now)
+$router->get('/food/items', function () {
+    require APP_PATH . "/Controllers/FoodController.php";
+    (new FoodController)->items();
+});
+
 // Kids Zone
 $router->get('/kids-zone', function () {
     require VIEW_PATH . 'Kids-Zone/KidsZone.php';

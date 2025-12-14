@@ -24,9 +24,15 @@
   <link rel="stylesheet" href="<?= ASSETS ?>css/components/About-section.component.css" />
   <link rel="stylesheet" href="<?= ASSETS ?>css/components/footer-section.component.css" />
   <link rel="stylesheet" href="<?= ASSETS ?>css/components/ai-component.css" />
-
-  <!-- css -->
+  <link rel="stylesheet" href="<?= ASSETS ?>css/components/food-section-component.css" />
   <link rel="stylesheet" href="<?= ASSETS ?>css/main.css" />
+
+  
+  <style>
+    body{
+      background-color: rgb(247, 245, 240);
+    }
+  </style>
 </head>
 
 <body>
@@ -181,6 +187,28 @@
         <a href="<?= BASE_URL ?>donate"><button class="donate-btn">Donate Now</button></a>
       </div>
     </section>
+
+   
+    <section class="home-dining-experience ">
+      <div class="overlay"></div>
+
+      <div class="container content">
+        <h2>A Culinary Journey Through Time</h2>
+
+        <p>
+          Step into a dining experience as extraordinary as the history surrounding you.
+          Inside the Grand Egyptian Museum, our curated restaurants and cafés bring together
+          authentic flavors, international cuisines, and modern dining concepts.
+        </p>
+
+        <a href="<?= BASE_URL ?>food" class="btn explore-food-btn">
+          Explore Museum Dining
+        </a>
+      </div>
+    </section>
+
+
+
 
     <section id="about-section" class="about-section" id="about">
       <div class="about-container">
