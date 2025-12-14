@@ -12,14 +12,14 @@ let lockBoard = false;
 let matches = 0;
 
 const symbols = [
-  "public/image/gameKids/cee.png",
-  "public/image/gameKids/tout.png",
-  "public/image/gameKids/key1.png",
-  "public/image/gameKids/key2.png",
-  "public/image/gameKids/key3.png",
-  "public/image/gameKids/key4.png",
-  "public/image/gameKids/key5.png",
-  "public/image/gameKids/key6.png",
+  "/GEM_mvc/public/assets/image/gameKids/cee.png",
+  "/GEM_mvc/public/assets/image/gameKids/key1.png",
+  "/GEM_mvc/public/assets/image/gameKids/key2.png",
+  "/GEM_mvc/public/assets/image/gameKids/key3.png",
+  "/GEM_mvc/public/assets/image/gameKids/key4.png",
+  "/GEM_mvc/public/assets/image/gameKids/key5.png",
+  "/GEM_mvc/public/assets/image/gameKids/key6.png",
+  "/GEM_mvc/public/assets/image/gameKids/tout.png",
 ];
 
 openMemoryGameBtn.addEventListener("click", () => {
@@ -137,22 +137,22 @@ const artifactStatus = document.getElementById("artifactStatus");
 // بيانات اللعبة
 const artifacts = [
   {
-    image: "public/image/artifacts/tut-mask.jpg",
+    image: "/GEM_mvc/public/assets/image/artifacts/tut-mask.jpg",
     answer: "Tutankhamun Mask",
     options: ["Tutankhamun Mask", "Horus Statue", "Anubis Head"],
   },
   {
-    image: "public/image/artifacts/ankh.jpg",
+    image: "/GEM_mvc/public/assets/image/artifacts/ankh.jpg",
     answer: "Ankh (Key of Life)",
     options: ["Eye of Horus", "Ankh (Key of Life)", "Scarab Beetle"],
   },
   {
-    image: "public/image/artifacts/scarab.jpg",
+    image: "/GEM_mvc/public/assets/image/artifacts/scarab.jpg",
     answer: "Scarab Beetle",
     options: ["Pharaoh Crown", "Scarab Beetle", "Pyramid Tip"],
   },
   {
-    image: "public/image/artifacts/eye-horus.png",
+    image: "/GEM_mvc/public/assets/image/artifacts/eye-horus.png",
     answer: "Eye of Horus",
     options: ["Eye of Horus", "Papyrus Scroll", "Golden Sun"],
   },
@@ -200,3 +200,5 @@ function renderOptions(item) {
 
 // إعادة لعبة
 artifactRestart.addEventListener("click", loadArtifact);
+
+

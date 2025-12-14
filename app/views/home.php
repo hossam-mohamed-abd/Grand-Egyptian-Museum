@@ -114,7 +114,7 @@
         <a href="<?= BASE_URL ?>kids-zone"><button class="kids-main-btn">See Kids Activities</button></a>
 
       </div>
-      <section class="kids-zone row justify-content-center gap-4" id="kids">
+      <section class="preview-card kids-zone row justify-content-center gap-4" id="kids">
         <!-- ... باقي سكشن الأطفال والصور ... -->
         <!-- Memory Game Card (Preview) -->
         <div class="memory-preview-card col-sm-12 col-md-6" id="openMemoryGame">
@@ -133,6 +133,37 @@
           <h3>Guess the Artifact</h3>
           <p>Can you identify the ancient Egyptian artifact?</p>
           <button>Play Now</button>
+        </div>
+
+        <!-- Kids Museum Tour -->
+        <div class="artifact-preview-card test col-sm-12 col-md-6 coming-soon">
+          <div class="memory-preview-top">
+            <img src="https://resilienteducator.com/wp-content/uploads/2020/09/childrens-museum-educator-2.jpg"
+              class="memory-preview-image" />
+          </div>
+          <h3>Kids Museum Tour</h3>
+          <p>A guided trip designed for kids to explore treasures in a fun way.</p>
+          <button>coming-soon</button>
+        </div>
+
+        <!-- Maze of the Sphinx -->
+        <div class="artifact-preview-card test col-sm-12 col-md-6 coming-soon">
+          <div class="memory-preview-top">
+            <img src="https://cdn-icons-png.flaticon.com/512/8920/8920636.png" class="memory-preview-image" />
+          </div>
+          <h3>Maze of the Sphinx</h3>
+          <p>Navigate the maze to help the Sphinx find its missing crown.</p>
+          <button>coming-soon</button>
+        </div>
+
+        <!-- Hieroglyph Puzzle -->
+        <div class="artifact-preview-card test col-sm-12 col-md-6 coming-soon">
+          <div class="memory-preview-top">
+            <img src="https://cdn-icons-png.flaticon.com/512/9855/9855619.png" class="memory-preview-image" />
+          </div>
+          <h3>Hieroglyph Puzzle</h3>
+          <p>Arrange hieroglyph tiles to unlock the temple door.</p>
+          <button>coming-soon</button>
         </div>
       </section>
     </section>

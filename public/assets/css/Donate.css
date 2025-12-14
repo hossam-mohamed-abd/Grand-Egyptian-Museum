@@ -565,6 +565,29 @@ section {
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
 }
 
+.step-content {
+  display: none;
+}
+
+.step-content.active {
+  display: block;
+}
+
+.form-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 25px;
+}
+
+.btn-secondary {
+  background: #ccc;
+  color: #333;
+  padding: 12px 25px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .hero h1 {
@@ -582,4 +605,181 @@ section {
   .final-cta h2 {
     font-size: 2rem;
   }
+}
+/* Fix text color inside donation form */
+.form-container,
+.form-container h3,
+.form-container h4,
+.form-container p,
+.form-container label {
+  color: #333;
+}
+
+#payment-info p {
+  color: #555;
+}
+
+
+.step-content {
+  display: none;
+}
+.step-content.active {
+  display: block;
+}
+
+.form-steps {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.step {
+  text-align: center;
+  opacity: 0.4;
+}
+.step.active {
+  opacity: 1;
+}
+.step span {
+  display: inline-block;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background: #ccc;
+  line-height: 35px;
+}
+.step.active span {
+  background: #d4af37;
+  color: #000;
+}
+
+.payment-methods {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  margin: 20px 0;
+}
+
+.payment-btn {
+  padding: 18px;
+  border: 2px dashed #d4af37;
+  background: #fff;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.payment-btn.active {
+  background: #d4af37;
+  border-style: solid;
+}
+
+.payment-info {
+  margin-top: 20px;
+}
+
+.payment-box {
+  display: none;
+  background: #f9f9f9;
+  padding: 20px;
+  border-radius: 10px;
+  color: #333;
+}
+.payment-box h4 {
+  color: #000;
+}
+
+
+/* ===============================
+   THANK YOU FULL SCREEN
+================================ */
+
+.thank-you-screen {
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(circle at top, rgba(212,175,55,0.18), transparent 60%),
+    linear-gradient(180deg, #0b0b0b, #121212);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.thank-you-screen.active {
+  display: flex;
+}
+
+.thank-you-card {
+  max-width: 720px;
+  width: 90%;
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(20px);
+  border-radius: 22px;
+  padding: 55px 45px;
+  text-align: center;
+  border: 1px solid rgba(212,175,55,0.3);
+  box-shadow: 0 40px 100px rgba(0, 0, 0, 0.7);
+}
+
+.thank-you-seal {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  margin: 0 auto 25px;
+  background: linear-gradient(135deg, #d4af37, #b8962e);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 32px;
+  color: #111;
+  box-shadow: 0 0 35px rgba(212,175,55,0.6);
+}
+
+.thank-you-card h1 {
+  font-size: 2.8rem;
+  color: #d4af37;
+  margin-bottom: 15px;
+  letter-spacing: 1px;
+}
+
+.thank-you-subtitle {
+  font-size: 1.25rem;
+  color: #ddd;
+  margin-bottom: 25px;
+}
+
+.thank-you-subtitle span {
+  color: #d4af37;
+  font-weight: 600;
+}
+
+.thank-you-message {
+  font-size: 1.15rem;
+  line-height: 1.8;
+  color: #cfcfcf;
+  margin-bottom: 40px;
+}
+
+.thank-you-btn {
+  display: inline-block;
+  padding: 14px 42px;
+  border-radius: 50px;
+  background: linear-gradient(135deg, #d4af37, #b8962e);
+  color: #111;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+
+.thank-you-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(212,175,55,0.6);
+}
+
+.thank-you-note {
+  margin-top: 30px;
+  font-size: 0.9rem;
+  color: #aaa;
 }

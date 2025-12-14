@@ -36,7 +36,7 @@ require_once APP_PATH . '/config/config.php'; ?>
         <div class="cards-grid">
           <div class="card">
             <div class="card-image" style="
-                background-image: url('https://images.unsplash.com/photo-1553913861-c0fddf2619ee?w=800');
+                background-image: url('<?= ASSETS ?>image/RestoreAncientArtifacts.png');
               "></div>
             <div class="card-content">
               <h3>Restore Ancient Artifacts</h3>
@@ -49,7 +49,7 @@ require_once APP_PATH . '/config/config.php'; ?>
           </div>
           <div class="card">
             <div class="card-image" style="
-                background-image: url('https://images.unsplash.com/photo-1569025690938-a00729c9e1f9?w=800');
+                background-image: url('<?= ASSETS ?>image/PreserveRoyalMummies.png');
               "></div>
             <div class="card-content">
               <h3>Preserve Royal Mummies</h3>
@@ -61,7 +61,7 @@ require_once APP_PATH . '/config/config.php'; ?>
           </div>
           <div class="card">
             <div class="card-image" style="
-                background-image: url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800');
+                background-image: url('<?= ASSETS ?>image/SupportKidsEducation.png');
               "></div>
             <div class="card-content">
               <h3>Support Kids Education</h3>
@@ -73,7 +73,7 @@ require_once APP_PATH . '/config/config.php'; ?>
           </div>
           <div class="card">
             <div class="card-image" style="
-                background-image: url('https://images.unsplash.com/photo-1591696205602-2f950c417cb9?w=800');
+                background-image: url('<?= ASSETS ?>image/ExpandMuseumExhibitions.png');
               "></div>
             <div class="card-content">
               <h3>Expand Museum Exhibitions</h3>
@@ -128,28 +128,30 @@ require_once APP_PATH . '/config/config.php'; ?>
           <div class="comparison-item">
             <h3>Before Restoration</h3>
             <div class="comparison-image" style="
-                background-image: url('https://images.unsplash.com/photo-1565191999001-551c187427bb?w=800');
+                background-image: url('<?= ASSETS ?>image/BeforeRestoration.png');
               "></div>
           </div>
           <div class="comparison-item">
             <h3>After Restoration</h3>
             <div class="comparison-image" style="
-                background-image: url('https://images.unsplash.com/photo-1553913861-c0fddf2619ee?w=800');
+                background-image: url('<?= ASSETS ?>image/AfterRestoration.png');
               "></div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Donation Form -->
+    <!-- DONATION FORM -->
     <section class="donation-form-section" id="donate">
       <div class="container">
         <h2 class="section-title">Make Your Contribution</h2>
+
         <div class="form-container">
+
           <div class="form-steps">
             <div class="step active">
               <div class="step-number">1</div>
-              <div class="step-label">Information</div>
+              <div class="step-label">Info</div>
             </div>
             <div class="step">
               <div class="step-number">2</div>
@@ -157,228 +159,94 @@ require_once APP_PATH . '/config/config.php'; ?>
             </div>
             <div class="step">
               <div class="step-number">3</div>
-              <div class="step-label">Type</div>
+              <div class="step-label">Payment</div>
             </div>
             <div class="step">
               <div class="step-number">4</div>
-              <div class="step-label">Payment</div>
+              <div class="step-label">Confirm</div>
             </div>
           </div>
 
           <form id="donationForm">
-            <div class="form-section">
+
+            <!-- STEP 1 -->
+            <div class="step-content active" data-step="1">
               <h3>Your Information</h3>
+
               <div class="form-group">
                 <label>Full Name</label>
-                <input type="text" id="fullName" placeholder="Enter your full name" required />
+                <input type="text" id="fullName" required>
               </div>
+
               <div class="form-group">
-                <label>Email Address</label>
-                <input type="email" id="email" placeholder="your@email.com" required />
+                <label>Email</label>
+                <input type="email" id="email" required>
               </div>
+
               <div class="form-group">
-                <label>Phone Number</label>
-                <input type="tel" id="phone" placeholder="+20 xxx xxx xxxx" />
+                <label>Message</label>
+                <input type="text" id="message">
               </div>
+
+              <button type="button" class="btn-primary next-btn">Next</button>
             </div>
 
-            <div class="form-section">
-              <h3>Enter Donation Amount</h3>
+            <!-- STEP 2 -->
+            <div class="step-content" data-step="2">
+              <h3>Donation Amount</h3>
+
               <div class="form-group">
                 <label>Amount (EGP)</label>
-                <input type="number" id="customAmount" placeholder="Enter your donation amount" min="1" required />
+                <input type="number" id="amount" min="1" required>
+              </div>
+
+              <div class="form-nav">
+                <button type="button" class="btn-secondary back-btn">Back</button>
+                <button type="button" class="btn-primary next-btn">Next</button>
               </div>
             </div>
 
-            <div class="form-section">
-              <h3>Donation Type</h3>
-              <div class="donation-type">
-                <button type="button" class="type-btn active" data-type="onetime">
-                  One-Time
-                </button>
-                <button type="button" class="type-btn" data-type="monthly">
-                  Monthly
-                </button>
-              </div>
-            </div>
+            <!-- STEP 3 -->
+            <div class="step-content" data-step="3">
+              <h3>Select Payment Method</h3>
 
-            <div class="form-section">
-              <h3>Payment Method</h3>
               <div class="payment-methods">
-                <div class="payment-icon active" data-payment="card">
-                  <span>Card</span>
-                </div>
-
-                <div class="payment-icon" data-payment="vodafone">
-                  <span>Vodafone</span>
-                </div>
-
-                <div class="payment-icon" data-payment="instapay">
-                  <span>InstaPay</span>
-                </div>
+                <button type="button" class="payment-btn" data-method="mobile">📱 Mobile Cash</button>
+                <button type="button" class="payment-btn" data-method="instapay">⚡ InstaPay</button>
               </div>
 
-              <!-- Payment Details Section -->
-              <div id="paymentDetails" style="margin-top: 30px">
-                <!-- Card Payment -->
-                <div id="cardPayment" class="payment-form">
-                  <div class="form-group">
-                    <label>Card Number</label>
-                    <input type="text" placeholder="1234 5678 9012 3456" maxlength="19" />
-                  </div>
-                  <div style="
-                      display: grid;
-                      grid-template-columns: 1fr 1fr;
-                      gap: 15px;
-                    ">
-                    <div class="form-group">
-                      <label>Expiry Date</label>
-                      <input type="text" placeholder="MM/YY" maxlength="5" />
-                    </div>
-                    <div class="form-group">
-                      <label>CVV</label>
-                      <input type="text" placeholder="123" maxlength="3" />
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label>Cardholder Name</label>
-                    <input type="text" placeholder="Name on card" />
-                  </div>
-                </div>
+              <input type="hidden" id="payment_method">
 
-                <!-- Vodafone Cash Payment -->
-                <div id="vodafonePayment" class="payment-form" style="display: none">
-                  <div style="
-                      background: linear-gradient(135deg, #fff9f0, #ffffff);
-                      border: 2px solid #d4af37;
-                      border-radius: 15px;
-                      padding: 25px;
-                      text-align: center;
-                    ">
-                    <h4 style="
-                        color: #d4af37;
-                        margin-bottom: 15px;
-                        font-size: 1.3rem;
-                      ">
-                      Transfer via Vodafone Cash
-                    </h4>
-                    <p style="
-                        color: #666;
-                        margin-bottom: 20px;
-                        font-family: Arial, sans-serif;
-                      ">
-                      Please send your donation to:
-                    </p>
-                    <div style="
-                        background: white;
-                        padding: 20px;
-                        border-radius: 10px;
-                        margin-bottom: 20px;
-                        border: 2px solid #f0f0f0;
-                      ">
-                      <p style="
-                          color: #999;
-                          font-size: 0.9rem;
-                          margin-bottom: 5px;
-                          font-family: Arial, sans-serif;
-                        ">
-                        Vodafone Cash Number
-                      </p>
-                      <p style="
-                          color: #000;
-                          font-size: 1.8rem;
-                          font-weight: bold;
-                          letter-spacing: 2px;
-                          font-family: Arial, sans-serif;
-                        ">
-                        01012345678
-                      </p>
-                    </div>
-                    <p style="
-                        color: #d4af37;
-                        font-size: 1.05rem;
-                        line-height: 1.7;
-                        font-family: 'Poppins', sans-serif;
-                        font-weight: 500;
-                        max-width: 600px;
-                        margin-top: 10px;
-                      ">
-                      Your contribution plays a vital role in preserving Egypt’s
-                      extraordinary heritage. Once your transfer is completed,
-                      you will receive an official confirmation receipt. Thank
-                      you for supporting our mission to safeguard the legacy of
-                      the Grand Egyptian Museum.
-                    </p>
-                    payment-icon active
-                  </div>
-                </div>
-
-                <!-- InstaPay Payment -->
-                <div id="instapayPayment" class="payment-form" style="display: none">
-                  <div style="
-                      background: linear-gradient(135deg, #fff9f0, #ffffff);
-                      border: 2px solid #d4af37;
-                      border-radius: 15px;
-                      padding: 25px;
-                      text-align: center;
-                    ">
-                    <h4 style="
-                        color: #d4af37;
-                        margin-bottom: 15px;
-                        font-size: 1.3rem;
-                      ">
-                      Transfer via InstaPay
-                    </h4>
-                    <p style="
-                        color: #666;
-                        margin-bottom: 20px;
-                        font-family: Arial, sans-serif;
-                      ">
-                      Please send your donation to:
-                    </p>
-                    <div style="
-                        background: white;
-                        padding: 20px;
-                        border-radius: 10px;
-                        margin-bottom: 20px;
-                        border: 2px solid #f0f0f0;
-                      ">
-                      <p style="
-                          color: #999;
-                          font-size: 0.9rem;
-                          margin-bottom: 5px;
-                          font-family: Arial, sans-serif;
-                        ">
-                        InstaPay Username
-                      </p>
-                      <p style="
-                          color: #000;
-                          font-size: 1.8rem;
-                          font-weight: bold;
-                          font-family: Arial, sans-serif;
-                        ">
-                        GrandEgyptianMuseum
-                      </p>
-                    </div>
-                    <p style="
-                        color: #d4af37;
-                        font-size: 1rem;
-                        line-height: 1.6;
-                        font-family: Arial, sans-serif;
-                      ">
-                      Your generous support protects 7,000 years of Egyptian
-                      history. Once you complete the transfer, we'll email you a
-                      donation certificate. Together, we preserve our legacy!
-                    </p>
-                  </div>
-                </div>
+              <div class="form-nav">
+                <button type="button" class="btn-secondary back-btn">Back</button>
+                <button type="button" class="btn-primary next-btn">Next</button>
               </div>
             </div>
 
-            <button type="submit" class="btn-primary" style="width: 100%; margin-top: 30px">
-              Complete Donation
-            </button>
+            <!-- STEP 4 -->
+            <div class="step-content" data-step="4">
+              <h3>Confirm Donation</h3>
+
+              <div id="payment-info">
+                <div id="mobile-info" class="payment-box" style="display:none;">
+                  <h4>Mobile Cash</h4>
+                  <strong>010 1234 5678</strong>
+                </div>
+
+                <div id="instapay-info" class="payment-box" style="display:none;">
+                  <h4>InstaPay</h4>
+                  <strong>GrandEgyptianMuseum</strong>
+                </div>
+              </div>
+
+              <div class="form-nav">
+                <button type="button" class="btn-secondary back-btn">Back</button>
+                <button type="submit" class="btn-primary">Complete Donation</button>
+              </div>
+            </div>
+
           </form>
+
         </div>
       </div>
     </section>
@@ -410,156 +278,202 @@ require_once APP_PATH . '/config/config.php'; ?>
       </div>
     </section>
 
-      <?php include VIEW_PATH . 'components/footer.php'; ?>
+    <?php include VIEW_PATH . 'components/footer.php'; ?>
+
+  </div>
+  <!-- THANK YOU OVERLAY -->
+  <div id="thankYouScreen" class="thank-you-screen">
+
+    <div class="thank-you-card">
+      <div class="thank-you-seal">GEM</div>
+
+      <h1>Thank You</h1>
+      <p class="thank-you-subtitle">
+        Your generosity helps preserve<br>
+        <span>7,000 years of Egyptian history</span>
+      </p>
+
+      <p class="thank-you-message">
+        Because of supporters like you, our heritage will continue
+        to inspire generations to come.
+      </p>
+
+      <a href="<?= BASE_URL ?>" class="thank-you-btn">
+        Back to Home
+      </a>
+
+      <div class="thank-you-note">
+        Feel free to share this moment 
+      </div>
+    </div>
 
   </div>
 
+
+
+
   <script>
-    // Create sparkles in hero
-    const hero = document.getElementById("hero");
-    for (let i = 0; i < 30; i++) {
-      const sparkle = document.createElement("div");
-      sparkle.className = "sparkle";
-      sparkle.style.left = Math.random() * 100 + "%";
-      sparkle.style.top = Math.random() * 100 + "%";
-      sparkle.style.animationDelay = Math.random() * 3 + "s";
-      hero.appendChild(sparkle);
-    }
+    let currentStep = 1;
 
-    // Scroll animations
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.style.opacity = "1";
-          entry.target.style.transform = "translateY(0)";
-        }
-      });
-    });
+    const steps = document.querySelectorAll(".step-content");
+    const indicators = document.querySelectorAll(".step");
 
-    document
-      .querySelectorAll(".card, .stat-item, .comparison-item")
-      .forEach((el) => {
-        el.style.opacity = "0";
-        el.style.transform = "translateY(30px)";
-        el.style.transition = "all 0.6s ease-out";
-        observer.observe(el);
-      });
+    const paymentButtons = document.querySelectorAll(".payment-btn");
+    const paymentInput = document.getElementById("payment_method");
 
-    // Multi-step form navigation
-    function goToStep(stepNumber) {
-      // Hide all steps
-      for (let i = 1; i <= 4; i++) {
-        const step = document.getElementById("step" + i);
-        if (step) step.style.display = "none";
+    const mobileInfo = document.getElementById("mobile-info");
+    const instapayInfo = document.getElementById("instapay-info");
+
+    const form = document.getElementById("donationForm");
+
+    /* =========================
+       STEP HANDLING
+    ========================== */
+
+    function showStep(step) {
+      steps.forEach(s => s.classList.remove("active"));
+      indicators.forEach(i => i.classList.remove("active"));
+
+      document.querySelector(`.step-content[data-step="${step}"]`)
+        .classList.add("active");
+
+      for (let i = 0; i < step; i++) {
+        indicators[i].classList.add("active");
       }
 
-      // Show current step
-      const currentStep = document.getElementById("step" + stepNumber);
-      if (currentStep) currentStep.style.display = "block";
-
-      // Update step indicators
-      document.querySelectorAll(".step").forEach((step, index) => {
-        if (index < stepNumber) {
-          step.classList.add("active");
-        } else {
-          step.classList.remove("active");
-        }
-      });
+      currentStep = step;
     }
 
-    // Multi-step form navigation
-    function goToStep(stepNumber) {
-      // Hide all steps
-      for (let i = 1; i <= 4; i++) {
-        const step = document.getElementById("step" + i);
-        if (step) step.style.display = "none";
+    /* =========================
+       VALIDATION PER STEP
+    ========================== */
+
+    function validateCurrentStep() {
+      // STEP 1: Name & Email
+      if (currentStep === 1) {
+        const name = document.getElementById("fullName").value.trim();
+        const email = document.getElementById("email").value.trim();
+
+        if (!name || !email) {
+          alert("Please enter your name and email.");
+          return false;
+        }
       }
 
-      // Show current step
-      const currentStep = document.getElementById("step" + stepNumber);
-      if (currentStep) currentStep.style.display = "block";
+      // STEP 2: Amount
+      if (currentStep === 2) {
+        const amount = document.getElementById("amount").value;
 
-      // Update step indicators
-      document.querySelectorAll(".step").forEach((step, index) => {
-        if (index < stepNumber) {
-          step.classList.add("active");
+        if (!amount || amount <= 0) {
+          alert("Please enter a valid donation amount.");
+          return false;
+        }
+      }
+
+      // STEP 3: Payment Method
+      if (currentStep === 3) {
+        if (!paymentInput.value) {
+          alert("Please select a payment method.");
+          return false;
+        }
+      }
+
+      return true;
+    }
+
+    /* =========================
+       NEXT / BACK BUTTONS
+    ========================== */
+
+    document.querySelectorAll(".next-btn").forEach(btn => {
+      btn.onclick = () => {
+        if (validateCurrentStep()) {
+          showStep(currentStep + 1);
+        }
+      };
+    });
+
+    document.querySelectorAll(".back-btn").forEach(btn => {
+      btn.onclick = () => showStep(currentStep - 1);
+    });
+
+    /* =========================
+       PAYMENT METHOD
+    ========================== */
+
+    paymentButtons.forEach(btn => {
+      btn.onclick = () => {
+        paymentButtons.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+
+        paymentInput.value = btn.dataset.method;
+
+        mobileInfo.style.display = "none";
+        instapayInfo.style.display = "none";
+
+        btn.dataset.method === "mobile"
+          ? mobileInfo.style.display = "block"
+          : instapayInfo.style.display = "block";
+      };
+    });
+
+    /* =========================
+       SUBMIT FORM
+    ========================== */
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      // Final validation (أمان زيادة)
+      if (!validateCurrentStep()) return;
+
+      const formData = new FormData();
+      formData.append("name", document.getElementById("fullName").value.trim());
+      formData.append("email", document.getElementById("email").value.trim());
+      formData.append("amount", document.getElementById("amount").value);
+      formData.append("message", document.getElementById("message").value);
+      formData.append("payment_method", paymentInput.value);
+
+      try {
+        const res = await fetch("<?= BASE_URL ?>donations/store", {
+          method: "POST",
+          body: formData
+        });
+
+        const data = await res.json();
+
+        if (data.success) {
+          showThankYouAndRedirect();
         } else {
-          step.classList.remove("active");
+          alert(data.msg || "Something went wrong");
         }
-      });
+
+      } catch (err) {
+        console.error(err);
+        alert("Server error");
+      }
+    });
+
+    /* =========================
+       THANK YOU + REDIRECT
+    ========================== */
+
+    function showThankYouAndRedirect() {
+      document.querySelector(".documentNotNavbar").style.display = "none";
+      document.getElementById("thankYouScreen").classList.add("active");
+
+
+
+      // window.location.href = "<?= BASE_URL ?>";
+
     }
 
-    // Amount input validation
-    const amountInput = document.getElementById("customAmount");
-    if (amountInput) {
-      amountInput.addEventListener("input", function () {
-        if (this.value < 0) {
-          this.value = 0;
-        }
-      });
-    }
-
-    // Donation type buttons
-    document.querySelectorAll(".type-btn").forEach((btn) => {
-      btn.addEventListener("click", function () {
-        document
-          .querySelectorAll(".type-btn")
-          .forEach((b) => b.classList.remove("active"));
-        this.classList.add("active");
-      });
-    });
-
-    // Payment method selection with form switching
-    document.querySelectorAll(".payment-icon").forEach((icon) => {
-      icon.addEventListener("click", function () {
-        // Remove active from all icons
-        document
-          .querySelectorAll(".payment-icon")
-          .forEach((i) => i.classList.remove("active"));
-        this.classList.add("active");
-
-        // Hide all payment forms
-        const cardForm = document.getElementById("cardPayment");
-        const vodafoneForm = document.getElementById("vodafonePayment");
-        const instapayForm = document.getElementById("instapayPayment");
-
-        if (cardForm) cardForm.style.display = "none";
-        if (vodafoneForm) vodafoneForm.style.display = "none";
-        if (instapayForm) instapayForm.style.display = "none";
-
-        // Show selected payment form
-        const paymentType = this.getAttribute("data-payment");
-        if (paymentType === "card" && cardForm) {
-          cardForm.style.display = "block";
-        } else if (paymentType === "vodafone" && vodafoneForm) {
-          vodafoneForm.style.display = "block";
-        } else if (paymentType === "instapay" && instapayForm) {
-          instapayForm.style.display = "block";
-        }
-      });
-    });
-
-    // Form submission
-    document
-      .getElementById("donationForm")
-      .addEventListener("submit", function (e) {
-        e.preventDefault();
-        alert(
-          "Thank you for your generous donation! Together, we preserve Egypt's magnificent heritage for future generations. 🏛️✨"
-        );
-      });
-
-    // Smooth scrolling
-    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-      anchor.addEventListener("click", function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute("href"));
-        if (target) {
-          target.scrollIntoView({ behavior: "smooth", block: "start" });
-        }
-      });
-    });
+    showStep(1);
   </script>
+
+
+
+
 
   <?php include VIEW_PATH . 'components/ai.php'; ?>
   <script src="<?= ASSETS ?>js/bootstrap.bundle.min.js"></script>

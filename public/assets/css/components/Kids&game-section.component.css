@@ -89,7 +89,7 @@
    Memory Game - Preview Card
 ============================= */
 
-.memory-preview-card {
+.preview-card>div {
   /* margin: 40px auto 0; */
   max-width: 320px;
   background: #fff;
@@ -99,9 +99,10 @@
   box-shadow: 0 4px 18px rgba(0, 0, 0, 0.15);
   border: 2px solid #e5d3b3;
   transition: 0.3s;
+  
 }
 
-.memory-preview-card:hover {
+.preview-card>div:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
 }
@@ -120,21 +121,21 @@
 }
 
 /* Title */
-.memory-preview-card h3 {
+.preview-card>div h3 {
   margin: 0;
   font-size: 1.5rem;
   color: #3a2e2e;
 }
 
 /* Text */
-.memory-preview-card p {
+.preview-card>div p {
   font-size: 1rem;
   color: #6b5d5d;
   margin-bottom: 12px;
 }
 
 /* Button */
-.memory-preview-card button {
+.preview-card>div button {
   padding: 8px 22px;
   border: none;
   background: #b58946;
@@ -145,7 +146,7 @@
   transition: 0.3s;
 }
 
-.memory-preview-card button:hover {
+.preview-card>div button:hover {
   background: #8d6a32;
   transform: scale(1.05);
 }

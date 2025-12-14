@@ -14,6 +14,7 @@ require_once APP_PATH . '/config/config.php'; ?>
   <link rel="stylesheet" href="<?= ASSETS ?>css/components/navbar.component.css">
   <link rel="stylesheet" href="<?= ASSETS ?>css/components/footer-section.component.css" />
   <link rel="stylesheet" href="<?= ASSETS ?>css/components/ai-component.css" />
+  <link rel="stylesheet" href="<?= ASSETS ?>css/components/Kids&game-section.component.css">
   <link rel="stylesheet" href="<?= ASSETS ?>css/KidsZone.css">
 </head>
 
@@ -31,29 +32,58 @@ require_once APP_PATH . '/config/config.php'; ?>
     <section class="highlights">
       <h2>Popular Kids Activities</h2>
 
-      <div class="highlight-grid">
+      <section class="preview-card kids-zone row justify-content-center gap-4" id="kids">
+        <!-- ... باقي سكشن الأطفال والصور ... -->
+        <!-- Memory Game Card (Preview) -->
+        <div class="memory-preview-card col-sm-12 col-md-6" id="openMemoryGame">
+          <div class="memory-preview-top">
+            <img src="<?= ASSETS ?>image/gameKids/logogame1.png" class="memory-preview-image" />
+          </div>
 
-        <div class="item">
-          <img
-            src="https://h5p.org/sites/default/files/styles/medium-logo/public/logos/memory-game-icon.png?itok=bIQqHE7Y"
-            alt="">
           <h3>Memory Game</h3>
-          <p>Match ancient Egyptian symbols and test your memory skills!</p>
+          <p>Match the Egyptian symbols and have fun!</p>
+          <button>Play Now</button>
         </div>
 
-        <div class="item">
-          <img src="https://cdn-icons-png.flaticon.com/512/5930/5930147.png" alt="">
+        <!-- Guess the Artifact - Preview Card -->
+        <div class="artifact-preview-card col-sm-12 col-md-6" id="openArtifactGame">
+          <div class="artifact-preview-icon">🗿</div>
           <h3>Guess the Artifact</h3>
-          <p>Identify hidden artifacts and learn fun historical facts.</p>
+          <p>Can you identify the ancient Egyptian artifact?</p>
+          <button>Play Now</button>
         </div>
 
-        <div class="item">
-          <img src="https://resilienteducator.com/wp-content/uploads/2020/09/childrens-museum-educator-2.jpg" alt="kidszone1">
+        <!-- Kids Museum Tour -->
+        <div class="artifact-preview-card test col-sm-12 col-md-6 coming-soon">
+          <div class="memory-preview-top">
+            <img src="https://resilienteducator.com/wp-content/uploads/2020/09/childrens-museum-educator-2.jpg"
+              class="memory-preview-image" />
+          </div>
           <h3>Kids Museum Tour</h3>
           <p>A guided trip designed for kids to explore treasures in a fun way.</p>
+          <button>coming-soon</button>
         </div>
 
-      </div>
+        <!-- Maze of the Sphinx -->
+        <div class="artifact-preview-card test col-sm-12 col-md-6 coming-soon">
+          <div class="memory-preview-top">
+            <img src="https://cdn-icons-png.flaticon.com/512/8920/8920636.png" class="memory-preview-image" />
+          </div>
+          <h3>Maze of the Sphinx</h3>
+          <p>Navigate the maze to help the Sphinx find its missing crown.</p>
+          <button>coming-soon</button>
+        </div>
+
+        <!-- Hieroglyph Puzzle -->
+        <div class="artifact-preview-card test col-sm-12 col-md-6 coming-soon">
+          <div class="memory-preview-top">
+            <img src="https://cdn-icons-png.flaticon.com/512/9855/9855619.png" class="memory-preview-image" />
+          </div>
+          <h3>Hieroglyph Puzzle</h3>
+          <p>Arrange hieroglyph tiles to unlock the temple door.</p>
+          <button>coming-soon</button>
+        </div>
+      </section>
     </section>
 
 
@@ -64,32 +94,32 @@ require_once APP_PATH . '/config/config.php'; ?>
       <div class="cat-grid">
 
         <div class="cat">
-          <img src="https://assets.kpmg.com/is/image/kpmgcloud/ie-gaming-gains:cq5dam-web-656-656?wid=328&hei=328">
+          <img src="<?= ASSETS ?>image/kyds/ArtWorkshops.png">
           <span>Art Workshops</span>
         </div>
 
         <div class="cat">
-          <img src="https://assets.kpmg.com/is/image/kpmgcloud/ie-gaming-gains:cq5dam-web-656-656?wid=328&hei=328">
+          <img src="<?= ASSETS ?>image/kyds/LearnHieroglyphs.png">
           <span>Learn Hieroglyphs</span>
         </div>
 
         <div class="cat">
-          <img src="https://assets.kpmg.com/is/image/kpmgcloud/ie-gaming-gains:cq5dam-web-656-656?wid=328&hei=328">
+          <img src="<?= ASSETS ?>image/kyds/Discovery Classes.png">
           <span>Discovery Classes</span>
         </div>
 
         <div class="cat">
-          <img src="https://assets.kpmg.com/is/image/kpmgcloud/ie-gaming-gains:cq5dam-web-656-656?wid=328&hei=328">
+          <img src="<?= ASSETS ?>image/kyds/Storytelling Sessions.png">
           <span>Storytelling Sessions</span>
         </div>
 
         <div class="cat">
-          <img src="https://assets.kpmg.com/is/image/kpmgcloud/ie-gaming-gains:cq5dam-web-656-656?wid=328&hei=328">
+          <img src="<?= ASSETS ?>image/kyds/Crafting & Coloring.png">
           <span>Crafting & Coloring</span>
         </div>
 
         <div class="cat">
-          <img src="https://assets.kpmg.com/is/image/kpmgcloud/ie-gaming-gains:cq5dam-web-656-656?wid=328&hei=328">
+          <img src="<?= ASSETS ?>image/kyds/Family Tours.png">
           <span>Family Tours</span>
         </div>
 
@@ -103,25 +133,72 @@ require_once APP_PATH . '/config/config.php'; ?>
 
       <div class="gallery-grid">
 
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQP7AAjkQN2m3pr64tBATZGofH7riSxSg5olA&s">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQP7AAjkQN2m3pr64tBATZGofH7riSxSg5olA&s">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQP7AAjkQN2m3pr64tBATZGofH7riSxSg5olA&s">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQP7AAjkQN2m3pr64tBATZGofH7riSxSg5olA&s">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQP7AAjkQN2m3pr64tBATZGofH7riSxSg5olA&s">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQP7AAjkQN2m3pr64tBATZGofH7riSxSg5olA&s">
+        <img src="<?= ASSETS ?>image/kyds/kids1.png">
+        <img src="<?= ASSETS ?>image/kyds/kids2.png">
+        <img src="<?= ASSETS ?>image/kyds/kids3.png">
+        <img src="<?= ASSETS ?>image/kyds/kids4.png">
+        <img src="<?= ASSETS ?>image/kyds/kids5.png">
+        <img src="<?= ASSETS ?>image/kyds/kids6.png">
+        <img src="<?= ASSETS ?>image/kyds/kids7.png">
+        <img src="<?= ASSETS ?>image/kyds/kids8.png">
+        <img src="<?= ASSETS ?>image/kyds/kids9.png">
+        <img src="<?= ASSETS ?>image/kyds/kids10.png">
+        <img src="https://kidsinmuseums.org.uk/wp-content/uploads/2021/02/Kids-in-Museums-2-scaled.jpg">
+        <img src="<?= ASSETS ?>image/kyds/kids11.png">
+        <img src="https://supersimple.com/wp-content/uploads/shutterstock_259843295.jpg">
 
       </div>
-
-      <div class="center-btn">
-        <a class="more-btn" href="kids-activities-full.html">View All Activities</a>
-      </div>
-
     </section>
+
+    <!-- games -->
+    <!-- Memory Game Overlay -->
+    <div class="memory-overlay" id="memoryOverlay">
+      <div class="memory-container">
+        <button class="memory-close" id="closeMemoryGame">&times;</button>
+
+        <h2 class="memory-title">Memory Game – Egyptian Icons</h2>
+        <p class="memory-subtitle">
+          Click on the cards and match all Egyptian symbols.
+        </p>
+
+        <div class="memory-grid" id="memoryGrid">
+          <!-- Cards هتتولد بالـ JavaScript -->
+        </div>
+
+        <div class="memory-footer">
+          <span id="memoryStatus">Matches: 0</span>
+          <button id="restartMemoryGame" class="memory-restart">
+            Restart
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Guess the Artifact Overlay -->
+    <div class="artifact-overlay" id="artifactOverlay">
+      <div class="artifact-container">
+        <button class="artifact-close" id="closeArtifactGame">&times;</button>
+
+        <h2 class="artifact-title">Guess the Artifact</h2>
+
+        <img id="artifactImage" class="artifact-image" src="" alt="Artifact" />
+
+        <div class="artifact-options">
+          <!-- الخيارات هتتبني بالـ JS -->
+        </div>
+
+        <div class="artifact-footer">
+          <span id="artifactStatus">Choose the correct answer!</span>
+          <button id="artifactRestart" class="artifact-restart">Next</button>
+        </div>
+      </div>
+    </div>
     <?php include VIEW_PATH . 'components/footer.php'; ?>
   </div>
   <?php include VIEW_PATH . 'components/ai.php'; ?>
   <script src="<?= ASSETS ?>js/bootstrap.bundle.min.js"></script>
   <script src="<?= ASSETS ?>js/navbar.component.js"></script>
+  <script src="<?= ASSETS ?>js/Kids&game-section.component.js"></script>
   <script src="<?= ASSETS ?>js/ai.js"></script>
 </body>
 

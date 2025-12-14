@@ -44,6 +44,11 @@ $router->get('/donate', function () {
     require VIEW_PATH . 'Donate/Donate.php';
 });
 
+$router->post('/donations/store', function () {
+    require APP_PATH . "/Controllers/DonationsController.php";
+    (new DonationsController)->store();
+});
+
 /* -------------------
       Authentication
 --------------------*/
